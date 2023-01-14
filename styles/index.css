@@ -67,11 +67,12 @@ nav img{
     margin-left: 5px;
 }
 .text-box h2{
-    font-size: 22px;
+    font-size: 18px;
 }
 .text-box p{
     margin: 10px 0 40px;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: lighter;
     color: #fff;
 }
 .text-box .hero-btn{
@@ -99,14 +100,18 @@ nav img{
 }
 .icons p{
     font-size:15px;
+    font-weight: normal;
 }
 
 nav .fa{
     display: none;
 }
-@media(max-width: 700px){
+@media(max-width: 768px){
     .nav-links ul li{
         display: block;
+    }
+    .nav-links ul li a{
+        color: #000;
     }
     .nav-links{
         position: absolute;
@@ -130,13 +135,18 @@ nav .fa{
         padding: 30px;
     }
     .text-box h1{
-        font-size: 18px;
+        font-size: 22px;
+        margin-left: 5%;
+        margin-top: 10%;
     }
     .text-box h2{
-        font-size:15px;
+        font-size:12px;
+        font-weight: normal;
     }
     .text-box p{
         font-size:8px;
+        font-weight: lighter;
+
     }
     .text-box .hero-btn{
         display: inline-block;
@@ -149,6 +159,7 @@ nav .fa{
     .icons p{
         margin-left: 0;
         font-size: 12px;
+        font-weight: normal;
     }
     .icons .fa{
         color:#fff;
@@ -159,4 +170,5 @@ nav .fa{
     }
 
 }
+
 

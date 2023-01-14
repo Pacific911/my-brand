@@ -156,6 +156,10 @@ button:active{
     right: 0;
     transform: translateX(0);
 }
+.overlay-right a{
+    color: #fff;
+    font-size: 12px;
+}
 .container.right-panel-active .overlay-left{
     transform: translateX(0);
 }

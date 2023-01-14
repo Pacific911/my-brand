@@ -53,12 +53,19 @@ nav img{
 nav .fa{
     display: none;
 }
+.Blog h1{
+    font-size: 36px;
+    font-weight: 600;
+    color: #fff;
+    margin-left: 15%;
+    margin-top: -10px;
+}
 
-.course{
-    width: 50%;
-    margin: auto;
-    text-align: center;
-    padding-top: 100px;
+.Blog p{
+    color: #fff;
+    margin-left: 15%;
+    font-size: 14px;
+    font-weight: 300;
 }
 .button{
     width: 10%;
@@ -66,81 +73,162 @@ nav .fa{
     border-radius: 9px;
     margin-left: 80%;
 }
-h1{
-    font-size: 36px;
-    font-weight: 600;
-    color: #fff;
-    margin-left: 15%;
-}
-
-p{
-    color: #fff;
-    margin-left: 15%;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 22px;
-    padding: 10px;
-}
 .row{
-    margin-top: 2%;
-    display:flex;    
-    justify-content: space-between;
+    display:grid; 
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
     margin-left: 15%;
+    width: 100vh;
+    padding: 5px;
 }
-.course-col{
-    flex-basis: 31%;
-    background: #fff;
+.blog-col{
     border-radius: 10px;
-    margin-bottom: 5%;
-    padding: 15px 10px;
-    box-sizing: border-box;
-    transition: 0.5s;
+    text-align: left;
+    background: #fff;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    display: flex;
 }
-.course-col h3{
-    text-align: center;
-    font-weight: 600;
-    margin: 10px 0;
-    color: #000;  
+.blog-col img {
+    height: 60px;
+    margin-left: 5px;
+    border-radius: 50%;
 }
-.course-col p{
+.blog-col p{
+    align-content: left;
+    font-size: 12px;
     color: #000;
+    margin-top: 5%;
 }
-.course-col:hover{
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
-}
-@media(max-width: 700px){
-    .row{
-        flex-direction: column;
+
+.like-button {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 20%;
+  }
+.like-button.animated {
+    -webkit-animation: pop 0.9s both;
+    animation: pop 0.9s both;
+  }
+.like-button svg {
+    opacity: 1;
+  }
+.like-button svg path {
+    fill: #333;
+    transition: fill .3s ease-out;
+  }
+.like-button.active svg path {   
+    fill: #f32521;
+   }
+  
+  @-webkit-keyframes pop {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
     }
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+      transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      -webkit-transform: scale3d(0.75, 1.25, 1);
+      transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+      transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      -webkit-transform: scale3d(0.95, 1.05, 1);
+      transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      -webkit-transform: scale3d(1.05, 0.95, 1);
+      transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  @keyframes pop {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+      transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      -webkit-transform: scale3d(0.75, 1.25, 1);
+      transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+      transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      -webkit-transform: scale3d(0.95, 1.05, 1);
+      transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      -webkit-transform: scale3d(1.05, 0.95, 1);
+      transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+ 
+.blog-col button {
+    font-size: 10px;
+    height: 30px;
+    width: 30%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-left: 70%;
+
+    
 }
-
-
-.footer-box .hero-btn{
+.blog-col button:hover{
+    background-color: #000;
+    color: #fff;
+}
+.hero-btn{
     text-decoration: none;
     color: #fff;
-    font-size: 10px;
-    position: relative;
+    font-size: 13px;
     cursor: pointer;
-    margin-left: 8%;
+    padding-top: 5px;
 }
-.footer-box .icons p{
+.footer-icons{
     margin-left: 15%;
-    font-size: 12px;
 }
-.footer-box .icons .fa{
-    color:#fff;
-    margin:0 5px;
-    cursor: pointer;
-    padding: 5px 0;
-    font-size: 12px;
+.footer-icons .fa{
+    color: #fff;
+    margin-top: 20px;
+    margin: 0 5px;
 }
-
+.footer-icons p{
+    color: #fff;
+    margin-left: -5px;
+    font-size: 13px;
+}
 @media(max-width: 700px){
     .text-box h1{
         font-size: 20px;
     }
     .nav-links ul li{
         display: block;
+    }
+    .nav-links ul li a{
+        color:#000;
     }
     .nav-links{
         position: absolute;
@@ -162,6 +250,59 @@ p{
     }
     .nav-links ul{
         padding: 30px;
+    }
+    .row{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .Blog button a{
+        margin-right: 5%;
+        width: 10%;
+    }
+    .button{
+        width: 20%;
+        border-radius: 9px;
+        margin-left: 70%;
+        border: 1px solid #ccc;
+        font-size: 12px;
+    }
+    .blog-col{
+        border-radius: 10px;
+        margin-bottom: 5%;
+        text-align: left;
+        background: #fff;
+        padding: 5px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        height: 40vh;
+        width: 70%;
+
+    }
+    .blog-col img {
+        height: 40px;
+        width: 40px;
+        margin-left: 5px;
+        border-radius: 50%;
+    }
+    .blog-col p{
+        align-content: left;
+        font-size: 8px;
+        color: #000;
+        margin-top: 5%;
+    }
+    .blog-col button {
+        font-size: 8px;
+        height: 20px;
+        width: 50%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        margin-left: 45%;
+        margin-top: 15%;
+    }
+    .blog-col button:hover{
+        background-color: #000;
+        color: #fff;
     }
 }
 

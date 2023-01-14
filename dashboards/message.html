@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pacific Porto</title>
+  <link rel="stylesheet" href="/styles/dashboard.css" />
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="/blog.html" class="logo">
+          <img src="/img/profile.jfif">
+          <span class="nav-item">Admin</span>
+        </a></li>
+        <li><a href="Dashboard.html">
+          <i class="fas fa-menorah"></i>
+          <span class="nav-item">Dashboard</span>
+        </a></li>
+        <li><a href="message.html">
+          <i class="fas fa-comment"></i>
+          <span class="nav-item">Message</span>
+        </a></li>
+        <li><a href="addBlogs.html">
+          <i class="fas fa-chart-bar"></i>
+          <span class="nav-item"> Add Blogs</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-cog"></i>
+          <span class="nav-item">Settings</span>
+        </a></li>
+
+        <li><a href="#" class="logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="nav-item">Log out</span>
+        </a></li>
+      </ul>
+    </nav>
+
+
+    <section class="main">
+      <div class="main-top">
+        <h1>Messages</h1>
+        <i class="fas fa-user-cog"></i>
+      </div>
+      <section class="blog">
+        <div class="blog-list">
+          <h1>Blog List</h1>
+          <table class="table">
+
+            <div id="form"></div>
+
+          </table>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <script>
+    // Check browser support
+    if (typeof(Storage) !== "undefined") {
+    // Retrieve
+    document.getElementById("result").innerHTML = localStorage.getItem("form");
+    } else {
+    document.getElementById("result").innerHTML = "Browser does not support Web Storage.";
+    }
+    </script>
+
+</body>
+</html>

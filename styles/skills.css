@@ -64,20 +64,14 @@ nav .fa{
     justify-content: center;
     flex-direction: column;
 } 
-.skills_head{
-    width: 80%;
-    margin-bottom: 100px;
-    display: grid;
-    place-items: center;
-    text-align: center;
-}
-.skills_head h2{
+
+.skills_section h2{
     font-size: 20px;
     margin-top: 50px;
     color: #000;
     padding-top: 5px;
 }
-.skills_head p{
+.skills_section p{
     color: #000;
     padding-top: 20px;
 }
@@ -202,49 +196,28 @@ nav .fa{
         width: 60%;
     }
 }
-.footer-box{
-    width: 90%;
-    color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    margin-left: 10%;
-}
-.footer-box .hero-btn{
-    display: inline-block;
+
+.hero-btn{
+
     text-decoration: none;
     color: #fff;
     font-size: 13px;
-    position: relative;
     cursor: pointer;
-    padding-top: 40%;
+    padding-top: 5px;
 }
-.icons{
-    margin-right: 15%;
-    padding-top: 35px;
+.footer-icons{
+    margin-top: 5%;
+    margin-left: 15%;
 }
-.icons a{
-    margin-right: 15px;
+.footer-icons .fa{
+    color: #fff;
+    margin-top: 20px;
+    margin: 0 5px;
 }
-.icons .fa{
-    color:#fff;
-    margin:0 5px;
-    cursor: pointer;
-    padding: 18px 0;
+.footer-icons p{
+    color: #fff;
 }
-
-.fa-heart-o{
-    color: #ffff;
-}
-.icons p{
-    font-size:15px;
-}
-
-@media(max-width: 700px){
-    .text-box h1{
-        font-size: 20px;
-    }
+@media(max-width: 768px){
     .nav-links ul li{
         display: block;
     }
@@ -283,7 +256,7 @@ nav .fa{
         align-items: center;
         justify-content: center;
         flex-direction: column;
-    } 
+    }
     .skills_section h2{
         margin-top: 80%;
         padding: 10px;
@@ -293,7 +266,6 @@ nav .fa{
         font-size: 10px;
         padding: 5px;
     }
-
     .skills_main{
         width: 100%;
         display: grid;
@@ -311,25 +283,7 @@ nav .fa{
         border-radius: 25px;
         position: relative;
     }
-    .footer-box .hero-btn{
-        display: inline-block;
-        text-decoration: none;
-        color: #fff;
-        font-size: 12px;
-        position: relative;
-        cursor: pointer;
-        padding-top: 120%;
-    }
-    .footer-box .fa{
-        color:#fff;
-        margin:0 5px;
-        cursor: pointer;
-        padding: 18px 0;
-        font-size: 15px;
-    }
-    .footer-box p{
-        font-size: 12px;
-    }
-}
 
+
+}
 

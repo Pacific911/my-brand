@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="styles/viewBlog.css">
+    
 </head>
 <body>
 
@@ -20,38 +21,48 @@
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
+                    <li><a href="blog.html">BLOG</a></li>
                     <li><a href="skills.html">SKILLS</a></li>
                     <li><a href="resume.html">RESUME</a></li>
-                    <li><a href="blog.html">BLOG</a></li>
                     <li><a href="contact.html">CONTACT</a></li>
                 </ul> 
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-    <div class="text-box">
-        <h1>About Me</h1>
 
-        <h2>Engineering</h2>
-        <p>When it comes to business, first impressions matter, and good website design is the key to capitalizing on them.<br>but on its functionality and usability as well. My experience as a programmer allows me to come up with intelligent solutions to technical challenges. <br> Aside from having extensive knowledge of recognized technical standards</p>
-        <h2>Design</h2>
-        <p>Although I am not the typical designer, I do possess excellent visual abilities,<br> and this makes me an excellent presenter,allowing me to successfully communicate design ideas to stakeholders and design teams.<br> With my strong conceptualization ability, I am able to visualize and create beautiful works. <br>Lastly, you can find me mostly tweaking stylesheets and creating fluid user experiences.</p>
+        <div class="view-Blog">
+            <h1> View Blog</h1>
+            <h2>Software Engineering</h2>
+            <img src="img/coder.jpg">
 
-        <div class="hero-btn">
-            <a href="skills.html" class="hero-btn">Let's Continue to My Skills
-            <i class="fa fa-arrow-right"></i></a> 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Cras euismod urna quis egestas gravida.<br>
+                Mauris scelerisque elit arcu, ac tempor sem tincidunt."Sed ut perspiciatis unde omnis iste natus error<br> totam rem aperiam, eaque ipsa quae ab illo inventore.<br> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni <br>dolores eos qui rationet.sed quia non numquam eius modi tempora Ut enim ad minima veniam, quis nostrum <br>exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel<br> eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae conseq</p>
         </div>
 
+
+            <!-- <div class="button">
+                <i onclick="count()" class="fa fa-heart icon" style="color: #fff;font-size:x-large; margin-left: 20%; margin-top:15px;display: grid; transition: .5s;cursor: pointer;transform: scale(1.2s);"></i>
+                <br>
+                <input type="number" value="0" id="likeCount" 
+
+                style="width:10%;margin-left: 20%;margin-top: -100px;border: none;outline: none;background: none;color:#fff;font-size: 30px;font-weight: 800;width: 100%;">
+            </div> -->
+
+
+
         <div class="footer-icons">
+            <a href="blog.html" class="hero-btn">Let's continue to my blog
+            <i class="fa fa-arrow-right"></i></a> 
+            <br>
+   
             <a href="https://twitter.com/Pacificray3"><i class="fa fa-twitter "></i></a>
             <a href="https://www.linkedin.com/in/nduwumwe-pacific-29438621a/"><i class="fa fa-linkedin"></i></a>
             <a href="https://github.com/Pacific911"><i class="fa fa-github"></i></a>
             <p>Made with <i class="fa fa-heart-o"></i> by Pacific Nduwumwe</p>
-        </div>
+        </div>  
         
-    </div>
-
     </section>
-    
 
         <!-----------  Javascript for Toggle Menu -------->
         <script>
@@ -64,7 +75,6 @@
                 navLinks.style.right = "-200px";
             }
         </script>
-
 </body>
 </html>
 

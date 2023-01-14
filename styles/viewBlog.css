@@ -54,46 +54,86 @@ nav .fa{
     display: none;
 }
 
-.text-box{
-    width: 90%;
+.course{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+.button{
+    width: 10%;
+    height: 5vh;
+    border-radius: 9px;
+    margin-left: 80%;
+}
+.view-Blog h1{
+    font-size: 36px;
+    font-weight: 600;
     color: #fff;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    margin-left: 10%;
-    position: fixed;
-
+    margin-left: 15%;
 }
-.text-box h1{
-    font-size: 52px;
-    margin-top: 5%;
-
+.view-Blog h2{
+    color: #fff;
+    font-size: 15px;
+    margin-left: 25%;
+    padding: 0 10px;
+    margin-top: 2%;
 }
-.text-box h2{
-    font-size: 18px;
+.view-Blog img {
+    height: 60px;
+    margin-left: 20%;
+    border-radius: 50%;
+    margin-top: 20px;
 }
-.text-box p{
-    margin: 10px 0 40px;
+.view-Blog p{
+    align-content: left;
     font-size: 15px;
     color: #fff;
+    margin-top: 30px;
+    margin-left: 20%;
 }
-.hero-btn{
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 13px;
 
+/*.blog-col .fa{
+    color: #f44336;
+    margin-bottom: 10%;
+}
+.blog-col button {
+    font-size: 10px;
+    height: 30px;
+    width: 20%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 70%;
+    margin-top: 30%;
+}
+.blog-col button:hover{
+    background-color: #000;
+    color: #fff;
+}*/
+
+.hero-btn{
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    padding-top: 5px;
+}
+.footer-icons{
+    margin-top: 5%;
+    margin-left: 15%;
 }
 .footer-icons .fa{
-    margin:0 5px;
     color: #fff;
-    padding:5px;
-    cursor: pointer;
+    margin-top: 20px;
+    margin: 0 5px;
 }
-
-
-@media(max-width: 768px){
+.footer-icons p{
+    color: #fff;
+}
+@media only screen and (max-width: 700px){
+    .text-box h1{
+        font-size: 20px;
+    }
     .nav-links ul li{
         display: block;
     }
@@ -121,28 +161,48 @@ nav .fa{
     .nav-links ul{
         padding: 30px;
     }
-    .text-box{
-        width: 90%;
-        color: #fff;
-        position: fixed;
-        top: 65%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        margin-left: 10%;
-        justify-content: flex-end;
+    .view-Blog{
+        display: flex;
     }
-    .text-box p{
-        margin: 10px 0 40px;
-        font-size: 8px;
+    .view-Blog img {
+        height: 60px;
+        margin-left: 10%;
+        border-radius: 50%;
+        margin-top: 20px;
+    }
+    .view-Blog p{
+        align-content: left;
+        font-size: 12px;
         color: #fff;
+        margin-top: 30px;
+        margin-left: 10%;
+    }
+    .button{
+        margin-right: -50%;
+    }
+    .button a{
+        color: #fff;
+    }
+    .button input{
+        margin-left: 20%;
+        margin-top: -100px;
+        border: none;
+        outline: none;
+        background: none;
+        color:#fff;
+        font-size: 30px;
+        font-weight: 800;
+        width: 100%;
     }
     .hero-btn{
-        color: #fff;
-        cursor: pointer;
         text-decoration: none;
-        font-size: 10px;
+        color: #fff;
+        font-size: 12px;
+        cursor: pointer;
     }
+
     .footer-icons p{
+        color: #fff;
         font-size: 12px;
     }
 
