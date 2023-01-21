@@ -1,6 +1,21 @@
+let url="";
+
+var image = document.getElementById('img');
+image.addEventListener('change',()=>{
+    console.log('photo');
+    const fr= new FileReader();
+    fr.readAsDataURL(image.files[0]);
+    fr.addEventListener('load',()=>{
+        
+        url= fr.result
+        console.log('url');
+    })
+});
+
 function  clearForm(){
     document.getElementById('name').value = "";
-    document.getElementById('message').value = "";
+    document.getElementById('img');
+    document.getElementById('message').value = "";   
 }
 
 let form = document.querySelector('#add-blog-form');
@@ -8,10 +23,12 @@ form.addEventListener('submit', (e) =>{
     e.preventDefault();
     var name = document.getElementById('name').value;
     var message = document.getElementById('message').value;
+    
 
     var user = {
         id: crypto.randomUUID(),
         name:name,
+        img:url,
         message:message,
     };
     let users = [];
@@ -24,7 +41,7 @@ form.addEventListener('submit', (e) =>{
     }
     users.push(user);
     localStorage.setItem("users", JSON.stringify(users));
-    alert('data added Successfully');
+    // alert('data added Successfully');
     clearForm();
 })
 

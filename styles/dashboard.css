@@ -19,7 +19,6 @@ nav{
   height: 100vh;
   left: 0;
   width: 90px;
-  /* width: 280px; */
   background: #fff;
   overflow: hidden;
   transition: 1s;
@@ -54,12 +53,12 @@ a{
   display: table;
   padding: 10px;
 }
-nav .fas{
+nav .fa{
   position: relative;
   width: 70px;
   height: 40px;
-  top: 20px;
-  font-size: 20px;
+  top: 15px;
+  font-size: 25px;
   text-align: center;
 }
 .nav-item{
@@ -75,9 +74,8 @@ a:hover i{
 }
 .logout{
   position: absolute;
-  bottom: 0;
+  bottom: 10%;
 }
-
 .container{
   display: flex;
 }
@@ -104,7 +102,6 @@ a:hover i{
   width: 100%;
 }
 
-/*Attendance List serction  */
 .blog{
   margin-top: 20px;
   text-transform: capitalize;
@@ -138,22 +135,26 @@ table thead tr{
 .table tbody tr{
   border-bottom: 1px solid #ddd;
 }
+.table tr img{
+ font-size:12px;
+}
 .table tbody tr:nth-of-type(odd){
   background: #f3f3f3;
 }
 .table tbody tr.active{
   font-weight: bold;
-  color: #4AD489;
 }
 .table tbody tr:last-of-type{
   border-bottom: 2px solid #232323;
 }
-.table button{
+
+.table .fa{
   padding: 6px 20px;
   border-radius: 10px;
   cursor: pointer;
   background: transparent;
-  border: 1px solid #232323;
+  border: none;
+
 }
 /* ----- .table button:hover{
   background: none;

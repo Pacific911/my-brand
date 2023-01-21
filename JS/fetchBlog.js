@@ -11,9 +11,10 @@ oldBlogs.forEach((blog, index) => {
 `<tr>
     <td>${index+1}</td>
     <td>${blog.name}</td>
+    <td><img src="${blog.img}"></td>
     <td>${blog.message}</td>
-    <td><button>Edit</button></td>
-    <td><button data-id=${blog.id} class="delete">Delete</button></td>
+    <td><i class="fa fa-pencil-square-o" onclick = editBlog(${index+1})></i></td>
+    <td><button data-id=${blog.id} class="delete">delete</button></td>
 </tr>
 `
 )})
@@ -32,4 +33,8 @@ function deleteBlog(deleteId){
     location.reload();
 }
 
+function editBlog(id){
+    window.location.href =`addBlogs.html?page=${id}`;
+    console.log(id);
+}
 

@@ -36,21 +36,32 @@
             <img src="img/coder.jpg">
 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Cras euismod urna quis egestas gravida.<br>
-                Mauris scelerisque elit arcu, ac tempor sem tincidunt."Sed ut perspiciatis unde omnis iste natus error<br> totam rem aperiam, eaque ipsa quae ab illo inventore.<br> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni <br>dolores eos qui rationet.sed quia non numquam eius modi tempora Ut enim ad minima veniam, quis nostrum <br>exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel<br> eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae conseq</p>
+                Cras euismod urna quis egestas gravida.<br></p>
         </div>
 
-
-            <!-- <div class="button">
-                <i onclick="count()" class="fa fa-heart icon" style="color: #fff;font-size:x-large; margin-left: 20%; margin-top:15px;display: grid; transition: .5s;cursor: pointer;transform: scale(1.2s);"></i>
-                <br>
-                <input type="number" value="0" id="likeCount" 
-
-                style="width:10%;margin-left: 20%;margin-top: -100px;border: none;outline: none;background: none;color:#fff;font-size: 30px;font-weight: 800;width: 100%;">
-            </div> -->
-
-
-
+        <div id="form-main">
+            <div id="form-div">
+              <form class="form" id="form1">
+                
+                <p class="name">
+                  <input name="name" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Name" id="name" />
+                </p>
+                
+                <p class="email">
+                  <input name="email" type="text" class="validate[required,custom[email]] feedback-input" id="email" placeholder="Email" />
+                </p>
+                
+                <p class="text">
+                  <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Comment"></textarea>
+                </p>
+                
+                
+                <div class="submit">
+                  <input type="submit" value="SEND" id="button-blue"/>
+                  <div class="ease"></div>
+                </div>
+              </form>
+            </div>
         <div class="footer-icons">
             <a href="blog.html" class="hero-btn">Let's continue to my blog
             <i class="fa fa-arrow-right"></i></a> 
