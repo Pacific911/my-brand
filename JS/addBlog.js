@@ -18,8 +18,8 @@ function  clearForm(){
     document.getElementById('message').value = "";   
 }
 
-let form = document.querySelector('#add-blog-form');
-form.addEventListener('submit', (e) =>{
+let form = document.getElementById('btn');
+form.addEventListener('click', (e) =>{
     e.preventDefault();
     var name = document.getElementById('name').value;
     var message = document.getElementById('message').value;
@@ -41,7 +41,7 @@ form.addEventListener('submit', (e) =>{
     }
     users.push(user);
     localStorage.setItem("users", JSON.stringify(users));
-    // alert('data added Successfully');
+    alert('data added Successfully');
     clearForm();
 })
 

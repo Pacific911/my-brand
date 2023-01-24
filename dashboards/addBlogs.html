@@ -61,7 +61,7 @@
               <textarea rows="4" cols="50" id="message" form="form" required=""></textarea>
             
               <input type="submit" id="btn"value="Submit">
-              <input type="submit" id="btn-danger" value="Change">
+              <button class="button" id="btn-danger">Change</button>
             </form>
           </div>
         </div>
@@ -87,8 +87,8 @@
       let a = localStorage.getItem('users')
       const b = JSON.parse(a)
       console.log(b);
-      const result = b.filter(blg=>b.indexOf(blg)==id)
-      console.log(id);
+      const result = b.filter(blg=>b.indexOf(blg)==id-1)
+ 
       console.log(result);      
       Name.value = result[0].name
       LinkUrl = result[0].img
@@ -106,19 +106,20 @@
       
     })
 });
-
-      BtnDanger.addEventListener('click', (e) =>{
       
-        b.forEach(Y=>{
+      BtnDanger.addEventListener('click', (e) =>{
+      let p = localStorage.getItem('users');
+      let t = JSON.parse(p);
+        t.forEach(Y=>{
           
-          if(b.indexOf(Y)== id){
+          if(t.indexOf(Y)== id-1){
             Y.name = Name.value 
             Y.img = LinkUrl
             Y.message = message.value
             console.log('done');
           }
         }) 
-        localStorage.setItem('users', JSON.stringify(b)) 
+        localStorage.setItem('users', JSON.stringify(t)) 
  
         // result[0].name = Name.value;
         // result[0].img = LinkUrl;

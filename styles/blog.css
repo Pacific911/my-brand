@@ -84,14 +84,12 @@ nav .fa{
 .blog-col{
     border-radius: 10px;
     text-align: left;
-    background: #fff;
-    padding: 5px;
+    background-color: #fff;
     cursor: pointer;
-    display: flex;
-    display: flex;
+    overflow: hidden;
 }
 .blog-col img {
-    height: 60px;
+    height: 70px;
     margin-left: 5px;
     border-radius: 50%;
 }

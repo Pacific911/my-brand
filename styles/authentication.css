@@ -179,3 +179,8 @@ button:active{
     border: 1px solid #ccc;
     border-radius: 50%;
 }
+
+.class{
+    color: #ff3860;
+    font-size: 9px;
+}
