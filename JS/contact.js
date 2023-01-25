@@ -1,114 +1,103 @@
 
-// function SendEmail(){
-//   Email.send({
-//     Host : "smtp.gmail.com",
-//     Username : "nduwumwepacific@gmail.com",
-//     Password : "simba911",
-//     To : 'nduwumwepacific@gmail.com',
-//     From : document.getElementById("email").value,
-//     Subject : document.getElementById("subject").value,
-//     Body : "Name:" + document.getElementById("name").value
-//     +"<br> Email: "+ document.getElementById("email").value
-//     +"<br> Subject: "+ document.getElementById("subject").value
-//     +"<br> Message: "+ document.getElementById("message").value
-// }).then(
-//   _message => alert("Message send successfully")
-// );
-  
-// }
+const form = document.getElementById('form');
+const {name,email,subject,message} = form;
+
+let oldMessages = JSON.parse(localStorage.getItem('messages')) ?? [];
+form.addEventListener('submit', (e) =>{
+    e.preventDefault();
+   
+    const currentMessage = {
+        id: crypto.randomUUID(),
+        name : name.value,
+        email : email.value,
+        subject : subject.value,
+        message : message.value,
+        createdAt : Date.now(),
+    }
+    console.log(currentMessage)
+    console.log(`State of old messages: ${oldMessages}`)
+    oldMessages.push(currentMessage);
+    validateForm(form) &&  localStorage.setItem('messages', JSON.stringify(oldMessages));
+    document.getElementById('form').reset();
+
+    
+})
 
 
 
+// validate input fields
+const validateForm = (form) => {
+    let isRequired = true;
+    // Check for Required Name
+    if (form.name.value.trim() === '') {
+      setInvalid(form.name, 'Name is Required!');
+      isRequired = false;
+    } else if (!validName(form.name.value.trim())) {
+      setInvalid(form.name, 'Name must be 3 - 50 characters!');
+    } else {
+      setSuccess(form.name);
+    }
+    // Check for Required Email
+    if (form.email.value.trim() === '') {
+      setInvalid(form.email, 'Email is required!');
+      isRequired = false;
+    } else if (!validEmail(form.email.value.trim())) {
+      setInvalid(form.email, 'Email is not valid!');
+    } else {
+      setSuccess(form.email);
+    }
+    // Check for Required Subject
+    if (form.subject.value.trim() === '') {
+      setInvalid(form.subject, 'Subject is Required!');
+    } else if (!validSubject(form.subject.value.trim())) {
+      setInvalid(form.subject, 'Subject must be 3 - 30 characters!');
+    } else {
+      setSuccess(form.subject);
+    }
+    // Check for Required Message
+    if (form.message.value.trim() === '') {
+      setInvalid(form.message, 'Message is Required!');
+      isRequired = false;
+    } else if (!validMessage(form.message.value.trim())) {
+      setInvalid(form.message, 'Message must be 10 - 500 characters!');
+    } else {
+      setSuccess(form.message);
+    }
+    return isRequired;
+  };
+  // Set for Success Input Value
+  const setSuccess = (input) => {
+    const inputBox = input.parentElement;
+    inputBox.className = 'form-control success';
+    const formAlert = inputBox.querySelector('.error');
+    formAlert.innerHTML = '';
+  };
+  // Set for Invalid Input Value
+  const setInvalid = (input, message) => {
+    const inputBox = input.parentElement;
+    const formAlert = inputBox.querySelector('.error');
+    inputBox.className = 'form-control invalid';
+    formAlert.innerHTML = message;
+  };
+  // Set for Valid Email Value
+  const validEmail = (email) => {
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email.toLowerCase());
+  };
+  // set for valid name value
+  const validName = (name) => {
+    const re = /^.{3,50}$/;
+    return re.test(name);
+  };
+  // set for valid subject value
+  const validSubject = (subject) => {
+    const re = /^.{3,30}$/;
+    return re.test(subject);
+  };
+  // set for valid message value
+  const validMessage = (message) => {
+    const re = /^.{10,500}$/;
+    return re.test(message);
+  };
 
-
-
-
-// var btn = document.getElementById('btn');
-// btn.addEventListener('click', function(e) {
-//   e.preventDefault()
-
-//   var name = document.getElementById('name').value;
-//   var email = document.getElementById('email').value;
-//   var subject = document.getElementById('subject').value;
-//   var message = document.getElementById('message').value;
-//   var body = 'name:' + name + '<br/> email:' + email + '<br/> subject' + subject + '<br/> message' + message;
-  
-//   Email.send({
-//     Host : "smtp.gmail.com",
-//     Username : "nduwumwepacific@gmail.com",
-//     Password : "oqvuqchvluskzohx",
-//     To : 'nduwumwepacific@gmail.com',
-//     From : email,
-//     Subject : subject,
-//     Body : body
-// }).then(
-//   message => alert(message)
-// );
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//get All value
-let sendBtn = document.getElementById('send');
-// let sestBtn = document.getElementById('reset');
-let sestBtn = document.getElementById('form')
-
-
-//Form Refresh state
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-});
-
-//Now working For Reset Btn
-// resetBtn.addEventListener('click', (e) => {
-//   let name = document.getElementById('name');
-//   let email = document.getElementById('email');
-//   let message = document.getElementById('message');
-
-//   //Set Value
-//   name.value='';
-//   email.value = '';
-//   message.value =''
-// });
-
-//Now start SendBtn
-sendBtn.addEventListener('click', (e) => {
-  let name = document.getElementById('name');
-  let email = document.getElementById('email');
-  let message = document.getElementById('message');
-
-  //Set Value and LocalStorage
-  name = name.value;
-  
-  localStorage.setItem('name', name);
-
-  email = email.value;
-  localStorage.setItem('email', email);
-
-  message = message.value;
-  localStorage.setItem('message', message);
-});

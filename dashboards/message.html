@@ -46,34 +46,42 @@
     <section class="main">
       <div class="main-top">
         <h1>Messages</h1>
-        <i class="fas fa-user-cog"></i>
       </div>
       <section class="blog">
         <div class="blog-list">
-          <h1>Message List</h1>
+        <h1>Blog List</h1>
           <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Reply</th>
+                <th>Delete</th>
 
-            <div id="form">
 
 
-              
-            </div>
+              </tr>
+            </thead>
+            <tbody id="blogs-section">
+              <!-- <tr>
+                <td>01</td>
+                <td>Pacific Nduwumwe</td>
+                <td>My Designs</td>
 
+                <td><button>Edit</button></td>
+                <td><button>Delete</button></td>
+              </tr> -->
+            </tbody>
           </table>
         </div>
       </section>
     </section>
   </div>
+ <script src="/JS/viewMessages.js"></script>
 
-  <script>
-    // Check browser support
-    if (typeof(Storage) !== "undefined") {
-    // Retrieve
-    document.getElementById("result").innerHTML = localStorage.getItem("form");
-    } else {
-    document.getElementById("result").innerHTML = "Browser does not support Web Storage.";
-    }
-    </script>
 
 </body>
 </html>

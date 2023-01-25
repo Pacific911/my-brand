@@ -65,19 +65,23 @@
                     <form id="form">
                         <h2>Send Message</h2>
                         <div class="inputBox">
-                            <input type="text" name="name" id="name" required="required">
+                            <input type="text" name="name" id="name" >
+                            <div class="error"></div>
                             <span>Full Name</span>
                         </div>
                         <div class="inputBox">
-                            <input type="email" name="email" id ="email" required="required">
+                            <input name="email" id ="email" >
+                            <div class="error"></div>
                             <span>Email</span>
                         </div>
-                        <!-- <div class="inputBox"> 
-                            <input type="text" name="subject" id ="subject" required="required">
+                        <div class="inputBox"> 
+                            <input type="text" name="subject" id ="subject" >
+                            <div class="error"></div>
                             <span>Subject</span>
-                        </div> -->
+                        </div>
                         <div class="inputBox">
-                            <textarea required="required"  id="message"></textarea>
+                            <textarea id="message"></textarea>
+                            <div class="error"></div>
                             <span>Type your Message....</span>
                         </div>
                         <div class="inputBox">
