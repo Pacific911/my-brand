@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/viewBlog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     
 </head>
 <body>
@@ -35,12 +36,18 @@
             <h2 id="title">Software Engineering</h2>
             <img src="#" id="profile">
             <p id="description">#></p>
+
+            <button class="like-btn">
+                <span id="icon"><i class="far fa-thumbs-up"></i></span>
+                <span id="count">0</span> like
+            </button>
         </div>
 
         <div class="input-comment">
-          <input type="text" name="" id="name" placeholder="enter email">
+            <h1 style="color: #fff; text-align: center;">Add Comments</h1>
+          <input type="text" name="" id="name" placeholder="enter your name">
           <br>
-          <textarea name="" id="comment" cols="30" rows="5"></textarea>
+          <textarea name="" id="comment" cols="30" rows="5" placeholder="place your comment "></textarea>
           <br>
           <input type="submit" id="btn" value="Submit">
         </div>
@@ -91,7 +98,7 @@
                 profile.src = retrieve[0].img
 
 
-        <!-------------- comment blog ------>  
+        /*------------ comment blog ------*/  
 
         const Name = document.getElementById('name');
         const commentSection = document.getElementById('comment');
@@ -140,6 +147,27 @@
                     Store.innerHTML=pName.outerHTML+pComment.outerHTML
                     Box.appendChild(Store)
                 }
+
+
+            /*---------- the blog -----------*/
+            const likeBtn = document.querySelector(".like-btn");
+            let likeIcon = document.querySelector("#icon");
+            let count = document.querySelector("#count");
+
+            //button clicked
+            let clicked = false;
+
+            likeBtn.addEventListener("click", () => {
+                if (!clicked) {
+                    clicked = true;
+                    likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+                    count.textContent++;
+                }else{
+                    clicked = false;
+                    likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+                    count.textContent--;
+                }
+            });
 
         </script>
 </body>

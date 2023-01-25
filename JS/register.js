@@ -1,4 +1,19 @@
 let form = document.querySelector('#signup-form');
+let users = JSON.parse(localStorage.getItem("users")) ?? [];
+function storedData(currentUser){
+    
+    // if(!localStorage.getItem("users") ){
+    //     users = [];
+    // }
+    // else{
+    //     users = JSON.parse(localStorage.getItem("users"));
+    // }
+    // users.push(user);
+    users.push(currentUser)
+    localStorage.setItem("users", JSON.stringify(users));
+    alert('Registered Successfully');
+
+}
 form.addEventListener('submit', (e) =>{
     e.preventDefault();
 
@@ -7,6 +22,8 @@ form.addEventListener('submit', (e) =>{
     var email = document.getElementById('email').value;
     var username = document.getElementById('username').value;
     var pass = document.getElementById('password').value;
+
+
 
     // const setError = ( element, message) => {
     //     const inputControl = element.parentElement;
@@ -61,18 +78,13 @@ form.addEventListener('submit', (e) =>{
         password:pass,
 
     };
-    let users = [];
-    const storedUsers = JSON.parse(localStorage.getItem("users"));
-    if(!localStorage.getItem("users") ){
-        users = [];
-    }
-    else{
-        users = JSON.parse(localStorage.getItem("users"));
-    }
-    users.push(user);
-    localStorage.setItem("users", JSON.stringify(users));
-    alert('Registered Successfully');
+    console.log(user);
+    storedData(user)
+
+    
+    
 })
+
 
 
 
