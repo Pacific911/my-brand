@@ -45,8 +45,6 @@
 
         <div class="input-comment">
             <h1 style="color: #fff; text-align: center;">Add Comments</h1>
-          <input type="text" name="" id="name" placeholder="enter your name">
-          <br>
           <textarea name="" id="comment" cols="30" rows="5" placeholder="place your comment "></textarea>
           <br>
           <input type="submit" id="btn" value="Submit">
@@ -118,7 +116,11 @@
                     z = localStorage.getItem('Comments');
                 }
                 const b = JSON.parse(z)
-                b.push({blogId:id, name:Name.value, comment:commentSection.value})
+
+                let userComment = localStorage.getItem('Active')
+                const x = JSON.parse(userComment);
+
+                b.push({blogId:id, name:x[0].activeuser, comment:commentSection.value})
                 localStorage.setItem("Comments", JSON.stringify(b));
                 window.location.reload();
       
@@ -139,9 +141,12 @@
                     const pComment = document.createElement('p');
                     pComment.classList.add('commentTitle');
 
+
+
                     const text1 = document.createTextNode(w[i].name);
                     const text2 = document.createTextNode(w[i].comment);
-
+                    
+    
                     pName.appendChild(text1);
                     pComment.appendChild(text2);
                     Store.innerHTML=pName.outerHTML+pComment.outerHTML

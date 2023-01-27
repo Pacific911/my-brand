@@ -13,7 +13,7 @@ oldMessages.forEach((message, index) => {
     <td>${message.email}</td>
     <td>${message.subject}</td>
     <td>${message.message}</td>
-    <td><a href="mailto:${message.email}">Reply</a></td>
+    <td><a href="mailto:${message.email}"><i class="fa fa-reply"></i></a></td>
     <td><i class="fa fa-trash-o delete" data-id=${message.id}></i></td>
 </tr>
 `

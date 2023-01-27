@@ -1,27 +1,62 @@
 let form = document.querySelector('#signup-form');
 let users = JSON.parse(localStorage.getItem("users")) ?? [];
 function storedData(currentUser){
-    
-    // if(!localStorage.getItem("users") ){
-    //     users = [];
-    // }
-    // else{
-    //     users = JSON.parse(localStorage.getItem("users"));
-    // }
-    // users.push(user);
+
     users.push(currentUser)
     localStorage.setItem("users", JSON.stringify(users));
     alert('Registered Successfully');
+    window.location.reload();
 
 }
-form.addEventListener('submit', (e) =>{
-    e.preventDefault();
 
-    // validateInputs();
+var Button = document.getElementById('btn-submit');
+
+Button.addEventListener('click', (e) =>{
+    e.preventDefault();
 
     var email = document.getElementById('email').value;
     var username = document.getElementById('username').value;
     var pass = document.getElementById('password').value;
+    var error = document.getElementById('error');
+
+    if(email && username && pass){
+        if(!ValidateEmail(email)){
+            // console.log('invalid email');
+        error.textContent ='';
+        error.textContent = 'Invalid email';
+        }else{
+            error.textContent ='';
+            var user = {
+                email:email,
+                username:username,
+                password:pass,
+        
+            };
+            console.log(user);
+            storedData(user)
+        }
+    }else{
+        // error.textContent ='';
+
+        error.textContent = 'Fill all the fields';
+        console.log(error.textContent);
+    }
+
+})
+
+
+function ValidateEmail(mail) {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -71,19 +106,6 @@ form.addEventListener('submit', (e) =>{
     //         setSuccess(password);
     //     }
     // }
-
-    var user = {
-        email:email,
-        username:username,
-        password:pass,
-
-    };
-    console.log(user);
-    storedData(user)
-
-    
-    
-})
 
 
 

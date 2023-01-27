@@ -118,7 +118,19 @@ nav .fa{
 .container .contactInfo .box .text{
     font-weight: 500;
     color: #fff;
-} 
+}
+.btn-button{
+    width: 30%;
+    height: 10vh;
+    margin-top: 10%;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.btn-button :hover{
+    background-color: #232323;
+    color: #fff;
+
+}
 .contactForm{
     width: 40%;
     padding: 40px;

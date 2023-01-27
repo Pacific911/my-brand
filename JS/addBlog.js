@@ -41,7 +41,7 @@ form.addEventListener('click', (e) =>{
     }
     users.push(user);
     localStorage.setItem("users", JSON.stringify(users));
-    alert('data added Successfully');
+    alert('blog added Successfully');
     clearForm();
 })
 

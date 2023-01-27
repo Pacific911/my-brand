@@ -25,6 +25,20 @@
 .hero p{
     margin: 10px 0 50px;
 }
+.hero .fa{
+    font-size: large;
+}
+.hero a{
+    color: #000;
+    margin-top: 10%;
+    text-decoration: none;
+    background-color: #fff;
+    font-size: 12px;
+    margin-left: 5%;
+    padding: 5px 5px;
+    border-radius: 3px;
+
+}
 form{
     background: #fff;
     display: flex;

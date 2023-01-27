@@ -12,18 +12,19 @@
 <body>
     <div class="container" id="main">
         <div class="sign-in">
-            <form onsubmit="loginFunc()">
+            <form>
                 <h1>Sign In</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/login" class="social"><i class="fab fa-github"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin"></i></a>
                 </div>
                 <p>Or use your account</p>
+                <h4 id="error" style="color: red; font-weight: bold;"></h4>
                 <input type="text" name="username" id="username" placeholder="Username" required="">
                 <input type="password" name="password" id="password" placeholder="Password" required="">
                 <a href="#">Forget Your Passowrd?</a>
-                <button type="submit">Sign in</button>
+                <button onClick="loginFunc(event)">Sign in</button>
             </form>
         </div>
         <div class="overlay-container">

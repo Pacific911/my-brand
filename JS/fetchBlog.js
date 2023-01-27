@@ -14,7 +14,7 @@ oldBlogs.forEach((blog, index) => {
     <td><img src="${blog.img}"></td>
     <td>${blog.message}</td>
     <td><i class="fa fa-pencil-square-o" onclick = editBlog(${index+1})></i></td>
-    <td><button data-id=${blog.id} class="delete">delete</button></td>
+    <td><i class="fa fa-trash delete"" data-id=${blog.id} ></i></td>
 </tr>
 `
 )})
