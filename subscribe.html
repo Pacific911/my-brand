@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/styles/subscribe.css">
+</head>
+<body>
+    <div class="hero">
+        <h3>Pacific NDUWUMWE</h3>
+        <h1>My Brand<br> Portofolio Online</h1>
+        <p>Subscribe For More details. <a href="/index.html">Home</a></p>
+        <form name="submit-to-google-sheet">
+            <input type="email" name="Email" placeholder="Enter Your Email">
+            <button type="submit"><i class="fa fa-paper-plane-o"></i></button>
+        </form>
+        <span id="msg"></span>
+        <!-- <a href="/index.html">/Home</a> -->
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbydYgs3cb2fBDaRCqMqg26lW4ttzMzDaL-Zm7YZpcj0xEBMA5Bf9yr397uGMzWa3cij/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Thank you for subscribing!"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },1000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+</body>
+</html>

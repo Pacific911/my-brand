@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pacific Porto</title>
+  <link rel="stylesheet" href="/styles/addBlogs.css" />
+  <link rel="stylesheet" href="/styles/dashboard.css">
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="/blog.html" class="logo">
+          <img src="/img/profile.jfif">
+          <span class="nav-item">Admin</span>
+        </a></li>
+        <li><a href="Dashboard.html">
+          <i class="fa fa-home"></i>
+          <span class="nav-item">Dashboard</span>
+        </a></li>
+        <li><a href="message.html">
+          <i class="fa fa-comment"></i>
+          <span class="nav-item">Message</span>
+        </a></li>
+        <li><a href="addBlogs.html">
+          <i class="fa fa-list"></i>
+          <span class="nav-item">Add Blogs</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fa fa-cogs"></i>
+          <span class="nav-item">Settings</span>
+        </a></li>
+
+        <li><a href="/login.html" class="logout">
+          <i class="fa fa-sign-out"></i>
+          <span class="nav-item">Log out</span>
+        </a></li>
+      </ul>
+    </nav>
+
+
+    <section class="main">
+      <div class="main-top">
+        <h1>Adding Blogs</h1>
+      </div>
+      <section class="blog">
+        <div class="blog-list">
+          <div>
+            <form id="add-blog-form">
+
+              <label for="fname">Blog Name</label>
+              <input type="text" id="name" placeholder="Your name.." required="">
+              <input type="file" id="img">
+              <br>
+              <label for="lname">Blog Description</label>
+              <textarea rows="4" cols="50" id="message" form="form" required=""></textarea>
+            
+              <input type="submit" id="btn"value="Submit">
+              <button class="button" id="btn-danger">Change</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <script src="/JS/addBlog.js"></script>
+  <script>
+    const BtnDanger = document.getElementById('btn-danger');
+    const Name = document.querySelector('#name');
+    const photo = document.getElementById('img');
+    const message = document.getElementById('message');
+    let LinkUrl = '';
+    let X="";
+
+    
+    const check= window.location.search
+      if(check!=""){
+      let parameter= new URLSearchParams(window.location.search)
+      let id = parameter.get("page")
+      console.log(id);
+      let a = localStorage.getItem('users')
+      const b = JSON.parse(a)
+      console.log(b);
+      const result = b.filter(blg=>b.indexOf(blg)==id-1)
+ 
+      console.log(result);      
+      Name.value = result[0].name
+      LinkUrl = result[0].img
+      message.value = result[0].message
+
+      var image = document.getElementById('img');
+        image.addEventListener('change',()=>{
+        console.log('photo');
+        const fr= new FileReader();
+        fr.readAsDataURL(image.files[0]);
+        fr.addEventListener('load',()=>{
+            
+        X= fr.result
+        LinkUrl = X
+      
+    })
+});
+      
+      BtnDanger.addEventListener('click', (e) =>{
+      let p = localStorage.getItem('users');
+      let t = JSON.parse(p);
+        t.forEach(Y=>{
+          
+          if(t.indexOf(Y)== id-1){
+            Y.name = Name.value 
+            Y.img = LinkUrl
+            Y.message = message.value
+            console.log('done');
+          }
+        }) 
+        localStorage.setItem('users', JSON.stringify(t)) 
+ 
+        // result[0].name = Name.value;
+        // result[0].img = LinkUrl;
+        // result[0].message = message.value;
+
+
+      })
+      
+      }
+  </script>
+
+</body>
+</html>

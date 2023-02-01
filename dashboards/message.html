@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pacific Porto</title>
+  <link rel="stylesheet" href="/styles/dashboard.css" />
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="/blog.html" class="logo">
+          <img src="/img/profile.jfif">
+          <span class="nav-item">Admin</span>
+        </a></li>
+        <li><a href="Dashboard.html">
+          <i class="fa fa-home"></i>
+          <span class="nav-item">Dashboard</span>
+        </a></li>
+        <li><a href="message.html">
+          <i class="fa fa-comment"></i>
+          <span class="nav-item">Message</span>
+        </a></li>
+        <li><a href="addBlogs.html">
+          <i class="fa fa-list"></i>
+          <span class="nav-item">Blogs</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fa fa-cogs"></i>
+          <span class="nav-item">Settings</span>
+        </a></li>
+
+        <li><a href="#" class="logout">
+          <i class="fa fa-sign-out"></i>
+          <span class="nav-item">Log out</span>
+        </a></li>
+      </ul>
+    </nav>
+
+
+    <section class="main">
+      <div class="main-top">
+        <h1>Messages</h1>
+      </div>
+      <section class="blog">
+        <div class="blog-list">
+        <h1>User Messages List</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Reply</th>
+                <th>Delete</th>
+
+
+
+              </tr>
+            </thead>
+            <tbody id="blogs-section">
+              <!-- <tr>
+                <td>01</td>
+                <td>Pacific Nduwumwe</td>
+                <td>My Designs</td>
+
+                <td><button>Edit</button></td>
+                <td><button>Delete</button></td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </div>
+ <script src="/JS/viewMessages.js"></script>
+
+
+</body>
+</html>
