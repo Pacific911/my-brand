@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/img/profile.jfif">
+    <link rel="stylesheet" href="styles/authentication.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <title>Login Form</title>
+</head>
+<body>
+    <div class="container" id="main">
+        <div class="sign-in">
+            <form id="signup-form">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <p>Or use your email registration</p>
+                    <h4 id="error" style="color: red; font-weight: bold;"></h4>
+                    <input type="text" name="username" id="username" placeholder="Username">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                    <button id="btn-submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-right">
+                    <h1>Welcome User!</h1>
+                    <p>To Keep Connected with us please login with your personal info</p>
+                    <a href="/login.html"><button id="signIn">Login In</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/JS/register.js"></script>
+</body>
+</html>
