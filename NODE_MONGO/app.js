@@ -6,6 +6,9 @@ const app = express()
 app.use(express.json())
 app.use(blogroute)
 
+var ejs = require('ejs');
+app.set('view engine', 'ejs');
+
 
 database()
 
