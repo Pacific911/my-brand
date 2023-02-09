@@ -13,7 +13,11 @@ const {
   retrieveMessages,
   register,
   login,
+  sendComments,
+  logout,
 } = require('../controllers/blogcontroller');
+const { verification } = require('../middlewares/auth');
+const  permission  = require('../middlewares/permission');
 
 const storage = multer.diskStorage({});
 const fileFilter = (req, file, cb) => {
@@ -26,17 +30,20 @@ const fileFilter = (req, file, cb) => {
 const uploads = multer({ storage, fileFilter });
 
 blogroute.post('/api/blog/create', uploads.single('image'), createBlog);
-blogroute.get('/api/blog/allblogs', viewBlog);
-blogroute.get('/api/blog/singleblog/:id', singleblog);
+blogroute.get('/api/blog/retrieve/all', viewBlog);
+blogroute.get('/api/blog/retrieve/single/:id', singleblog);
 blogroute.patch('/api/blog/update/:_id', updateBlog);
 blogroute.delete('/api/blog/delete/:_id', deleteBlog);
 
-blogroute.post('/auth/register', register);
-blogroute.post('/auth/login', login);
+blogroute.post('/user/auth/register', register);
+blogroute.post('/user/auth/login', login);
+blogroute.post('/user/auth/logout', logout);
 
-blogroute.post('/sendmessages', sendMessage);
-blogroute.delete('/deletemessage/:id', deleteMessage);
-blogroute.delete('/deleteallmessage', deleteAllMessage);
-blogroute.get('/retrievemessages', retrieveMessages);
+blogroute.post('/user/contacts/sendmessage',sendMessage);
+blogroute.delete('/user/contacts/delete/message/:id', deleteMessage);
+blogroute.delete('/user/contacts/delete/message/all', deleteAllMessage);
+blogroute.get('/user/retrievemessages', verification, permission, retrieveMessages);
+
+blogroute.post('/blog/comments/send/:id', verification, sendComments);
 
 module.exports = blogroute;

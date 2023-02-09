@@ -1,8 +1,10 @@
 const blog = require('../models/blog');
 const Message = require('../models/messages');
+const Comment = require('../models/comments');
 const user = require('../models/users');
 const jwt = require('jsonwebtoken');
 const cloudinary = require('../utils/helper.util');
+const bcrypt = require('bcrypt');
 
 //creating blogs
 
@@ -19,7 +21,7 @@ const createBlog = async (req, res) => {
       blogdescription,
     });
     res.status(201).json({
-      status: 201,
+      code: 201,
       success: true,
       message: 'blog created successful',
     });
@@ -27,8 +29,6 @@ const createBlog = async (req, res) => {
     console.log({ error: error });
   }
 };
-
-
 
 //viewing blogs
 
@@ -79,7 +79,7 @@ const updateBlog = (req, res) => {
       });
     }
   });
-   
+
   blog.findByIdAndUpdate({ _id: id }, req.body, (err, data) => {
     if (err) {
       res.status(400).json("Cann't find the ID");
@@ -185,7 +185,7 @@ const deleteAllMessage = (req, res) => {
       });
     } else {
       res.status(400).json({
-        code: 400,
+        statuscode: 400,
         message: 'Message not deleted',
         Error: err,
       });
@@ -194,30 +194,97 @@ const deleteAllMessage = (req, res) => {
 };
 
 //user login
-const login = async (req, res) => {
-  const name = req.body.name;
+const login = async (req, res, Msg) => {
+  const email = req.body.email;
   const password = req.body.password;
 
-  const userLogin = user.findOne({ name: name });
+  const userLogin = await user.findOne({ email: email });
   if (userLogin) {
-    if (userLogin.password === password) {
-      res.json('user matches');
+    const aunthentication = await bcrypt.compare(password, userLogin.password);
+    if (aunthentication) {
+      const token = generate(userLogin._id);
+      res.cookie('jwt', token);
+      res.status(200).json({
+        code: 200,
+        message: 'logged in successful',
+        MessageDeleted: Msg,
+      });
+    } else {
+      res.json('wrong credentials');
     }
+  } else {
+    res.json('user not found');
   }
 };
 
+
+//logout
+const logout = (req, res) => {
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.json({
+    code: 200,
+    message: 'Logged Out',
+  });
+};
+
+
+
+
+
+
 function generate(id) {
-  return jwt.sign({ id }, 'paccy');
+  return jwt.sign({ id }, process.env.JWT_SECRET);
 }
-const register = async (req, res) => {
+const register = async (req, res, Msg) => {
   var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
 
   if (name && email && password) {
-    const dta = await user.create({ name, email, password });
-    const token = generate(dta._id);
-    res.json({ token });
+    const User = await user.findOne({ email: req.body.email });
+    if (User == null) {
+      const dta = await user.create({ name: req.body.name, email: req.body.email, password: req.body.password });
+      const token = generate(dta._id);
+      res.cookie('jwt', token);
+      res.status(200).json({
+        statuscode: 200,
+        message: 'Registered successful',
+        MessageDeleted: Msg,
+      });
+    }else{
+      res.json('user exists')
+    }
+  }
+};
+
+//send comment
+const sendComments = (req, res) => {
+  const comment = {
+
+    comment: req.body.comment,
+  };
+  try {
+    Comment.create({name:res.locals.user.name, comment:req.body.comment}, (err, Msg) => {
+      if (Msg) {
+        res.status(201).json({
+          code: 201,
+          message: 'Comment sent',
+          MessageSent: Msg,
+        });
+      } else {
+        res.status(400).json({
+          code: 400,
+          message: 'not sent',
+          Error: err,
+        });
+      }
+    });
+  } catch (error) {
+    res.status(400).json({
+      code: 400,
+      Message: 'Comment not Sent',
+      Error: error,
+    });
   }
 };
 
@@ -233,4 +300,6 @@ module.exports = {
   retrieveMessages,
   register,
   login,
+  logout,
+  sendComments,
 };
