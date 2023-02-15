@@ -25,7 +25,7 @@ const createBlog = async (req, res) => {
         code: 200,
         success: true,
         message: 'blog created successful',
-        blog: data,
+        blog: post,
       });
     }
   } catch (error) {
@@ -59,28 +59,12 @@ const singleblog = async (req, res) => {
 };
 
 //updating blogs
-const updateBlog = (req, res) => {
-  const id = req.params._id;
-  const img = blog.findOne({ _id: id }, (err, data) => {
-    if (data) {
-      res.status(200).json({
-        code: 200,
-        message: 'single blog',
-        MessageSent: data,
-      });
-    }
-    if (err) {
-      res.status(404).json({
-        code: 404,
-        message: 'error',
-        MessageSent: err,
-      });
-    }
-  });
 
+const updateBlog = async (req, res) => {
+  const id = req.params.id;
   blog.findByIdAndUpdate({ _id: id }, req.body, (err, data) => {
     if (err) {
-      res.status(400).json("Cann't find the ID");
+      res.status(400).json({ error: 'CAN NOT FIND THE ID' });
     }
     if (data) {
       res.json(data);
@@ -138,10 +122,10 @@ const retrieveMessages = async (req, res) => {
 //retrive all messages
 const deleteAllMessage = (req, res) => {
   Message.find((err) => {
-      res.status(200).json({
-        code: 200,
-        message: 'All messages deleted successful',
-      });
+    res.status(200).json({
+      code: 200,
+      message: 'All messages deleted successful',
+    });
   });
 };
 

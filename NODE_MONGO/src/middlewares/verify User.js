@@ -14,7 +14,7 @@ const verifyUser = (req, res, next) => {
           res.locals.user = data;
           next();
         } else {
-          res.json({ message: 'user not found' });
+          next();
         }
       }
     });

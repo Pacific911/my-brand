@@ -16,7 +16,7 @@ const {
   logout,
 } = require('../controllers/blogcontroller');
 const { verification } = require('../middlewares/auth');
-const  permission  = require('../middlewares/permission');
+const permission = require('../middlewares/permission');
 
 const storage = multer.diskStorage({});
 const fileFilter = (req, file, cb) => {
@@ -54,7 +54,7 @@ const uploads = multer({ storage, fileFilter });
  * @swagger
  * /user/contacts/sendmessage:
  *   post:
- *     summary: This api is used to send messages 
+ *     summary: This api is used to send messages
  *     tags: [Messages]
  *     requestBody:
  *       required: true
@@ -76,7 +76,7 @@ const uploads = multer({ storage, fileFilter });
 
 /**
  * @swagger
- * /user/contacts/delete/message/{id}:
+ * /user/contacts/delete/message/all:
  *   delete:
  *     summary: This api is used to delete the message
  *     tags: [Messages]
@@ -85,15 +85,24 @@ const uploads = multer({ storage, fileFilter });
  *       - in: path
  *         name: id
  *         required: true
- *         description: Numeric ID required
- *         schema: 
+ *         schema:
  *           type: string
  *     responses:
  *       200:
  *         description: data is deleted
  */
 
-
+/**
+ * @swagger
+ * /user/retrieve/message/all:
+ *  get:
+ *      summary: this API gets all the messages
+ *      tags: [Messages]
+ *
+ *      responses:
+ *          200:
+ *              description: Retrieved all blogs
+ */
 
 /**
  * @swagger
@@ -112,7 +121,7 @@ const uploads = multer({ storage, fileFilter });
  * @swagger
  * /blog/comments/send/{id}:
  *   post:
- *     summary: This api is used to send comment 
+ *     summary: This api is used to send comment
  *     tags: [Comments]
  *     requestBody:
  *       required: true
@@ -120,7 +129,10 @@ const uploads = multer({ storage, fileFilter });
  *         application/json:
  *           schema:
  *             $ref: '#components/schema/Comment '
- *     description: Api for sending the message
+ *             properties:
+ *               comment:
+ *                 type: string
+ *     description: Api for sending the comments
  *     responses:
  *       200:
  *         description: To test the Get method
@@ -131,8 +143,6 @@ const uploads = multer({ storage, fileFilter });
  *               items:
  *                 $ref: '#components/schema/Comment'
  */
-
-
 
 /**
  * @swagger
@@ -145,14 +155,13 @@ const uploads = multer({ storage, fileFilter });
  *         - email
  *         - password
  *       properties:
- *         name: 
+ *         name:
  *           type: string
- *         email: 
+ *         email:
  *           type: string
  *         password:
  *           type: string
  */
-
 
 /**
  * @swagger
@@ -177,7 +186,6 @@ const uploads = multer({ storage, fileFilter });
  *                 $ref: '#components/schema/register'
  */
 
-
 /**
  * @swagger
  * components:
@@ -188,7 +196,7 @@ const uploads = multer({ storage, fileFilter });
  *         - email
  *         - password
  *       properties:
- *         email: 
+ *         email:
  *           type: string
  *         password:
  *           type: string
@@ -219,65 +227,146 @@ const uploads = multer({ storage, fileFilter });
 
 /**
  * @swagger
- * components:
- *   schema:
- *     blogs:
- *       type: object
- *       required:
- *         - blogname
- *         - imae
- *         - blogdescription
- *       properties:
- *         blogname: 
- *           type: string
- *         image:
- *           type: string
- *         blogdescription:
- *           type: string
+ * securityDefinitions:
+ *      bearerAuth:
+ *          type: "apiKey"
+ *          name: "Authorization"
+ *          in: "header"
+ * /api/blog/create:
+ *  post:
+ *      summary: adding new blog
+ *      tags: [Blogs]
+ *      security:
+ *          - bearerAuth: []
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              multipart/form-data:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          blogname:
+ *                              type: string
+ *                              description: add blog title
+ *                          blogdescription:
+ *                              type: string
+ *                              description: add blog body
+ *                          image:
+ *                              type: string
+ *                              format: binary
+ *                              description: blog image
+ *
+ *      responses:
+ *          200:
+ *              description: adding new blog
  */
 
 /**
  * @swagger
- * /api/blog/create:
- *   post:
- *     summary:  Blog creating api
- *     tags: [Blogs]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#components/schema/blogs'
- *     description: creating blogs
- *     responses:
- *       200:
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#components/schema/blogs'
+ * /api/blog/retrieve/all:
+ *  get:
+ *      summary: this API gets all the blogs
+ *      tags: [Blogs]
+ *
+ *      responses:
+ *          200:
+ *              description: Retrieved all blogs
  */
 
+/**
+ * @swagger
+ * /api/blog/retrieve/{id}:
+ *  get:
+ *      summary: this API gets the single blog
+ *      tags: [Blogs]
+ *      parameters:
+ *         - in: path
+ *           name: id
+ *           schema:
+ *             type: string
+ *           required: true
+ *           description: the blog id
+ *
+ *      responses:
+ *          200:
+ *              description: retrieved single blog
+ */
 
+/**
+ * @swagger
+ * /api/blog/delete/{id}:
+ *  delete:
+ *      summary: Deleting a blog
+ *      tags: [Blogs]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: the blog id
+ *      responses:
+ *          200:
+ *              description: successful deleted the blog
+ *          400:
+ *              description: Action not made
+ */
 
+/**
+ * @swagger
+ * /api/blog/update/{id}:
+ *  patch:
+ *      summary: this API is used to update a blog
+ *      tags: [Blogs]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *      requestBody:
+ *          content:
+ *              multipart/form-data:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          blogname:
+ *                              type: string
+ *                              description: blog name
+ *                          blogdescription:
+ *                              type: string
+ *                              description: blog description
+ *                          image:
+ *                              type: string
+ *                              format: binary
+ *                              description: blog image
+ *      responses:
+ *          200:
+ *              description: Blog updated successfully
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *          400:
+ *              description: Unable to update blog
+ */
 
-
-
-
-
-blogroute.post('/api/blog/create', uploads.single('image'),verification, permission, createBlog);
-blogroute.get('/api/blog/retrieve/all',verification, permission, viewBlog);
+blogroute.post(
+  '/api/blog/create',
+  uploads.single('image'),
+  verification,
+  permission,
+  createBlog,
+);
+blogroute.get('/api/blog/retrieve/all', verification, permission, viewBlog);
 blogroute.get('/api/blog/retrieve/single/:id',verification, permission, singleblog);
-blogroute.patch('/api/blog/update/:_id',verification, permission, updateBlog);
-blogroute.delete('/api/blog/delete/:_id',verification, permission, deleteBlog);
+blogroute.patch('/api/blog/update/:id', verification, permission, uploads.single('image'), updateBlog);
+blogroute.delete('/api/blog/delete/:_id', verification, permission, deleteBlog);
 
 blogroute.post('/user/auth/register', register);
 blogroute.post('/user/auth/login', login);
 blogroute.get('/user/auth/logout', logout);
 
-blogroute.post('/user/contacts/sendmessage',sendMessage);
-blogroute.delete('/user/contacts/delete/message/all',verification, permission, deleteAllMessage);
+blogroute.post('/user/contacts/sendmessage', sendMessage);
+blogroute.delete('/user/contacts/delete/message/all', verification, permission, deleteAllMessage);
 blogroute.get('/user/retrieve/message/all', verification, permission, retrieveMessages);
 
 blogroute.post('/blog/comments/send/:id', verification, sendComments);
