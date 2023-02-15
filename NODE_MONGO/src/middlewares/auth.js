@@ -5,14 +5,14 @@ const verification = (req, res, next) => {
   if (token) {
     jwtoken.verify(token, 'paccy', (err, decodedtoken) => {
       if (err) {
-        res.status(401).json({ Error: 'Please Login First !!!' });
+        res.status(401).json({ Error: 'please first login  !!' });
       }
       if (decodedtoken) {
         next();
       }
     });
   } else {
-    res.status(401).json({ Message: 'Please Login First !!!' });
+    res.status(401).json({ Message: 'please first login !!' });
   }
 };
 module.exports = { verification };

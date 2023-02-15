@@ -20,11 +20,14 @@ const createBlog = async (req, res) => {
       image: result.url,
       blogdescription,
     });
-    res.status(201).json({
-      code: 201,
-      success: true,
-      message: 'blog created successful',
-    });
+    if (post) {
+      res.status(200).json({
+        code: 200,
+        success: true,
+        message: 'blog created successful',
+        blog: data,
+      });
+    }
   } catch (error) {
     console.log({ error: error });
   }
@@ -34,7 +37,12 @@ const createBlog = async (req, res) => {
 
 const viewBlog = async (req, res) => {
   await blog.find().then((data) => {
-    res.json({ blogs: data });
+    res.status(200).json({
+      code: 200,
+      success: true,
+      message: 'all retrieved successful',
+      blogs: data,
+    });
   });
 };
 
@@ -42,21 +50,11 @@ const viewBlog = async (req, res) => {
 
 const singleblog = async (req, res) => {
   const id = req.params.id;
-  blog.findOne({ _id: id }, (err, data) => {
-    if (data) {
-      res.status(201).json({
-        code: 200,
-        message: 'single blog',
-        MessageSent: data,
-      });
-    }
-    if (err) {
-      res.status(201).json({
-        code: 404,
-        message: 'error',
-        MessageSent: err,
-      });
-    }
+  blog.findOne({ _id: id }, () => {
+    res.status(200).json({
+      code: 200,
+      message: 'single blog',
+    });
   });
 };
 
@@ -65,14 +63,14 @@ const updateBlog = (req, res) => {
   const id = req.params._id;
   const img = blog.findOne({ _id: id }, (err, data) => {
     if (data) {
-      res.status(201).json({
+      res.status(200).json({
         code: 200,
         message: 'single blog',
         MessageSent: data,
       });
     }
     if (err) {
-      res.status(201).json({
+      res.status(404).json({
         code: 404,
         message: 'error',
         MessageSent: err,
@@ -96,6 +94,11 @@ const deleteBlog = async (req, res) => {
     const id = req.params._id;
     await blog.findByIdAndRemove({ _id: id }).then((data) => {
       res.json(data);
+      res.status(200).json({
+        code: 200,
+        message: 'deleted successful',
+        MessageSent: data,
+      });
     });
   } catch (error) {
     console.log(error);
@@ -111,85 +114,34 @@ const sendMessage = (req, res) => {
     subject: req.body.subject,
     message: req.body.message,
   };
-  try {
-    Message.create(message, (err, Msg) => {
-      if (!err) {
-        res.status(201).json({
-          code: 201,
-          message: 'Message sent successful',
-          MessageSent: Msg,
-        });
-      } else {
-        res.status(400).json({
-          code: 400,
-          message: 'Message not received',
-          Error: err,
-        });
-      }
-    });
-  } catch (error) {
-    res.status(400).json({
-      code: 400,
-      Message: 'Message not Sent',
-      Error: error,
-    });
-  }
-};
 
-//delete message
-const deleteMessage = (req, res) => {
-  Message.deleteOne({ _id: req.params.id }, (err, Msg) => {
-    if (!err) {
-      res.status(200).json({
-        code: 200,
-        message: 'Message deleted successful',
-        MessageDeleted: Msg,
-      });
-    } else {
-      res.status(400).json({
-        code: 400,
-        message: 'Message not deleted',
-        Error: err,
-      });
-    }
+  Message.create(message, (err) => {
+    res.status(200).json({
+      code: 200,
+      message: 'Message sent successful',
+    });
   });
 };
 
-//delete all messages
-const retrieveMessages = (req, res) => {
-  Message.find((err, Msg) => {
-    if (!err) {
-      res.status(200).json({
-        code: 200,
-        message: 'All messages deleted successful',
-        MessageDeleted: Msg,
-      });
-    } else {
-      res.status(400).json({
-        code: 400,
-        message: 'Message not deleted',
-        Error: err,
-      });
-    }
+//get all messages
+const retrieveMessages = async (req, res) => {
+  await Message.find().then((data) => {
+    res.status(200).json({
+      code: 200,
+      success: true,
+      message: 'all retrieved successful',
+      messages: data,
+    });
   });
 };
 
 //retrive all messages
 const deleteAllMessage = (req, res) => {
-  Message.find((err, Msg) => {
-    if (!err) {
+  Message.find((err) => {
       res.status(200).json({
         code: 200,
         message: 'All messages deleted successful',
-        MessageDeleted: Msg,
       });
-    } else {
-      res.status(400).json({
-        statuscode: 400,
-        message: 'Message not deleted',
-        Error: err,
-      });
-    }
   });
 };
 
@@ -207,16 +159,24 @@ const login = async (req, res, Msg) => {
       res.status(200).json({
         code: 200,
         message: 'logged in successful',
+        token,
         MessageDeleted: Msg,
       });
     } else {
-      res.json('wrong credentials');
+      res.status(402).json({
+        code: 402,
+        message: 'wrong password',
+        MessageDeleted: Msg,
+      });
     }
   } else {
-    res.json('user not found');
+    res.status(404).json({
+      code: 404,
+      message: 'user not found',
+      MessageDeleted: Msg,
+    });
   }
 };
-
 
 //logout
 const logout = (req, res) => {
@@ -226,11 +186,6 @@ const logout = (req, res) => {
     message: 'Logged Out',
   });
 };
-
-
-
-
-
 
 function generate(id) {
   return jwt.sign({ id }, process.env.JWT_SECRET);
@@ -243,7 +198,11 @@ const register = async (req, res, Msg) => {
   if (name && email && password) {
     const User = await user.findOne({ email: req.body.email });
     if (User == null) {
-      const dta = await user.create({ name: req.body.name, email: req.body.email, password: req.body.password });
+      const dta = await user.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+      });
       const token = generate(dta._id);
       res.cookie('jwt', token);
       res.status(200).json({
@@ -251,8 +210,12 @@ const register = async (req, res, Msg) => {
         message: 'Registered successful',
         MessageDeleted: Msg,
       });
-    }else{
-      res.json('user exists')
+    } else {
+      res.status(401).json({
+        statuscode: 401,
+        message: 'user exists',
+        MessageDeleted: Msg,
+      });
     }
   }
 };
@@ -260,32 +223,13 @@ const register = async (req, res, Msg) => {
 //send comment
 const sendComments = (req, res) => {
   const comment = {
-
     comment: req.body.comment,
   };
-  try {
-    Comment.create({name:res.locals.user.name, comment:req.body.comment}, (err, Msg) => {
-      if (Msg) {
-        res.status(201).json({
-          code: 201,
-          message: 'Comment sent',
-          MessageSent: Msg,
-        });
-      } else {
-        res.status(400).json({
-          code: 400,
-          message: 'not sent',
-          Error: err,
-        });
-      }
+  Comment.create({ name: res.locals.user.name, comment: req.body.comment }),
+    res.status(200).json({
+      code: 200,
+      message: 'Comment sent',
     });
-  } catch (error) {
-    res.status(400).json({
-      code: 400,
-      Message: 'Comment not Sent',
-      Error: error,
-    });
-  }
 };
 
 module.exports = {
@@ -295,7 +239,6 @@ module.exports = {
   updateBlog,
   deleteBlog,
   sendMessage,
-  deleteMessage,
   deleteAllMessage,
   retrieveMessages,
   register,

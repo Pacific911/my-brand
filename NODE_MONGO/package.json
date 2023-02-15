@@ -9,16 +9,26 @@
     "joi": "^17.7.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.0",
+    "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "nanoid": "^4.0.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "sharp": "^0.31.3"
+    "sharp": "^0.31.3",
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^4.6.0"
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "test": "nyc --reporter=html mocha",
+    "coverage": "nyc npm run test"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "nyc": "^15.1.0"
   }
 }

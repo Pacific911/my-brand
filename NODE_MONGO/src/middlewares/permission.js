@@ -17,7 +17,7 @@ const adminAction = (req, res, next) => {
           } else {
             res
               .status(400)
-              .json({ message: 'Only Admin can perform this action' });
+              .json({ message: 'this action is accessed by the admin only' });
           }
         } else {
           res.status(400).json({ message: 'user not found' });
@@ -25,7 +25,7 @@ const adminAction = (req, res, next) => {
       }
     });
   } else {
-    res.status(401).json({ message: 'Log In first !!' });
+    res.status(401).json({ message: 'log in first !!' });
   }
 };
 module.exports = adminAction;
