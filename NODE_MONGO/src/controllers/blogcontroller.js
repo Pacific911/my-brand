@@ -5,7 +5,7 @@ const user = require('../models/users');
 const jwt = require('jsonwebtoken');
 const cloudinary = require('../utils/helper.util');
 const bcrypt = require('bcrypt');
-require('dotenv').config();
+require('dotenv').config()
 
 //creating blogs
 
