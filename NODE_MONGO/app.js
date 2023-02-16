@@ -18,6 +18,12 @@ const options = {
     info: {
       title: 'API-LIBRARY',
       version: '1.0.0',
+      description: "Blogs, Messages and User apis",
+        contact: {
+          name: "NDUWUMWE Pacific", 
+          email: "nduwumwepacific@gmail.com", 
+          url: "web.com",
+    }
     },
     servers: [
       {
