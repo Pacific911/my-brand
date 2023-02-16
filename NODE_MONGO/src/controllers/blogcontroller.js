@@ -5,7 +5,7 @@ const user = require('../models/users');
 const jwt = require('jsonwebtoken');
 const cloudinary = require('../utils/helper.util');
 const bcrypt = require('bcrypt');
-require('dotenv').config()
+require('dotenv').config();
 
 //creating blogs
 
@@ -193,7 +193,7 @@ const register = async (req, res, Msg) => {
       res.status(200).json({
         statuscode: 200,
         message: 'Registered successful',
-        MessageDeleted: Msg,
+        MessageDeleted: dta._id,
       });
     } else {
       res.status(401).json({
@@ -203,6 +203,25 @@ const register = async (req, res, Msg) => {
       });
     }
   }
+};
+
+//delete user
+
+const deleteUser = (req, res) => {
+  user.deleteOne({ _id: req.params.id }, (err, data) => {
+    if (!err) {
+      res.status(200).json({
+        code: 200,
+        message: 'User Deleted',
+      });
+    } else {
+      res.status(404).json({
+        code: 404,
+        message: 'User to Delete not found',
+        error: err,
+      });
+    }
+  });
 };
 
 //send comment
@@ -229,5 +248,6 @@ module.exports = {
   register,
   login,
   logout,
+  deleteUser,
   sendComments,
 };

@@ -9,6 +9,8 @@ const verifyUser = require('./src/middlewares/verify User');
 
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
+const Morgan = require('morgan')
+app.use(Morgan("tiny"));
 
 
 

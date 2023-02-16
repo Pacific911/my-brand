@@ -12,6 +12,7 @@ const {
   retrieveMessages,
   register,
   login,
+  deleteUser,
   sendComments,
   logout,
 } = require('../controllers/blogcontroller');
@@ -364,6 +365,7 @@ blogroute.delete('/api/blog/delete/:_id', verification, permission, deleteBlog);
 blogroute.post('/user/auth/register', register);
 blogroute.post('/user/auth/login', login);
 blogroute.get('/user/auth/logout', logout);
+blogroute.delete('/user/auth/delete/:id', permission, deleteUser);
 
 blogroute.post('/user/contacts/sendmessage', sendMessage);
 blogroute.delete('/user/contacts/delete/message/all', verification, permission, deleteAllMessage);
