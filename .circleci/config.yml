@@ -9,16 +9,16 @@ jobs:
       - checkout
       - run:
           name: Install npm dependencies
-          command: cd NODE_MONGO_TUTORIAL && npm install
+          command: cd NODE_MONGO && npm install
       - run:
           name: Install npm dev dependencies
-          command: cd NODE_MONGO_TUTORIAL && npm install mocha nyc chai-http chai
+          command: cd NODE_MONGO && npm install mocha nyc chai-http chai
       - run:
           name: Run Unit Tests
-          command: cd NODE_MONGO_TUTORIAL && npm run coverage
+          command: cd NODE_MONGO && npm run coverage
       # - run:
       #     name: Upload coverage to Coveralls
-      #     command: cd NODE_MONGO_TUTORIAL && npx coveralls < coverage/lcov.info
+      #     command: cd NODE_MONGO && npx coveralls < coverage/lcov.info
 workflows:
   build_tests:
     jobs:
