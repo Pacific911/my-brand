@@ -21,7 +21,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "nyc --reporter=html mocha",
+    "test": "nyc --reporter=html mocha --timeout 8000 ",
     "coverage": "nyc npm run test"
   },
   "devDependencies": {

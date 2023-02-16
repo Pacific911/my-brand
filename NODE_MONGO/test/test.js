@@ -8,6 +8,7 @@ const { fileURLToPath } = require('url');
 const { should } = require('chai');
 const { request } = require('http');
 const { image } = require('../src/utils/helper.util');
+require('dotenv').config();
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
@@ -67,9 +68,9 @@ describe('POST /messages', () => {
 describe('POST /register', () => {
   it('it should not sign a new user if he exists', (done) => {
     const user = {
-      name: 'admin-250',
-      email: 'admin-250@gmail.com',
-      password: 'admin',
+      name: 'craig',
+      email: 'craig@gmail.com',
+      password: 'craig',
     };
     chai
       .request(server)
@@ -105,8 +106,8 @@ describe('POST /register', () => {
 describe('POST /login', () => {
   it('it should login the Current user', (done) => {
     const user = {
-      email: 'admin-250@gmail.com',
-      password: 'admin',
+      email: 'craig@gmail.com',
+      password: 'craig',
     };
     chai
       .request(server)
@@ -123,7 +124,7 @@ describe('POST /login', () => {
 describe('POST /login', () => {
   it('wrong credentials', (done) => {
     const user = {
-      email: 'david@gmail.com',
+      email: 'craig@gmail.com',
       password: '123',
     };
     chai
@@ -248,14 +249,14 @@ describe('POST /api/blog/delete/:_id', () => {
   });
 });
 
-describe('POST /api/blog/update/:_id', () => {
+describe('POST /api/blog/update/:id', () => {
   it('should update a blog', (done) => {
     const blogdata = {
       blogname: 'javascript',
     };
     chai
       .request(server)
-      .patch('/api/blog/update/' + BLOG_ID)
+      .patch('/api/blog/update/' + process.env.BLOG_ID)
       .set('cookie', `jwt=${process.env.ADMIN_TOKEN}`)
       .send(blogdata)
       .end((err, res) => {
