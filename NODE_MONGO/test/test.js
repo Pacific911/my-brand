@@ -20,10 +20,10 @@ chai.use(chaihttp);
 describe('POST /messages', () => {
   it('it should send a new message', (done) => {
     const message = {
-      name: 'paccy',
-      email: 'pacy@gmail.com',
+      name: 'amani',
+      email: 'amani@gmail.com',
       subject: 'request',
-      message: 'make changes',
+      message: 'changes',
     };
     chai
       .request(server)
@@ -68,9 +68,9 @@ describe('POST /messages', () => {
 describe('POST /register', () => {
   it('it should not register a new user if he exists', (done) => {
     const user = {
-      name: 'lydie-250',
-      email: 'lydie-250@gmail.com',
-      password: 'lydie',
+      name: 'roger',
+      email: 'roger0@gmail.com',
+      password: 'roger',
     };
     chai
       .request(server)
@@ -87,9 +87,9 @@ describe('POST /register', () => {
 describe('POST /register', () => {
   it('user exist', (done) => {
     const user = {
-      name: 'lydie-250',
-      email: 'lydie-250@gmail.com',
-      password: 'lydie',
+      name: 'roger',
+      email: 'roger@gmail.com',
+      password: 'roger',
     };
     chai
       .request(server)
