@@ -3,6 +3,7 @@
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.33.0",
     "cookie-parser": "^1.4.6",
+    "coveralls": "^3.1.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
@@ -22,7 +23,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "nyc --reporter=html mocha --exit --timeout 8000000 ",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc --reporter=lcov npm run test "
   },
   "devDependencies": {
     "chai": "^4.3.7",

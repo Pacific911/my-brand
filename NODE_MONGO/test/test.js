@@ -88,9 +88,9 @@ describe('POST /register', () => {
         res.should.be.json;
         const token = res.body.token;
         const user = {
-          name: 'drake',
-          email: 'drake@gmail.com',
-          password: 'drake',
+          name: 'ornella',
+          email: 'ornella@gmail.com',
+          password: 'ornella',
         };
         chai
           .request(server)
@@ -101,7 +101,7 @@ describe('POST /register', () => {
             res.should.be.json;
             const userid = res.body.MessageDeleted;
             const user = {
-              email: 'drake@gmail.com',
+              email: 'ornella@gmail.com',
               password: '123',
             };
             chai
@@ -118,19 +118,19 @@ describe('POST /register', () => {
               .set('Cookie', `jwt=${token}`)
               .end((err, res) => {
                 res.should.have.status(200);
-                done();
               });
+            done();
           });
       });
   });
 });
 
-describe('POST /register', () => {
+describe('POST /user exist', () => {
   it('user exist', (done) => {
     const user = {
-      name: 'asap',
-      email: 'asap@gmail.com',
-      password: 'asap',
+      name: 'ornella',
+      email: 'ornella@gmail.com',
+      password: 'ornella',
     };
     chai
       .request(server)
@@ -259,5 +259,3 @@ describe('POST /api/blog/create', () => {
       });
   });
 });
-
-
