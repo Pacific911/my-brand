@@ -66,10 +66,10 @@ describe('POST /messages', () => {
 
 /* ------------- test for user --------*/
 describe('POST /register', () => {
-  it('it should not sign a new user if he exists', (done) => {
+  it('it should not register a new user if he exists', (done) => {
     const user = {
-      name: 'lydie',
-      email: 'lydie@gmail.com',
+      name: 'lydie-250',
+      email: 'lydie-250@gmail.com',
       password: 'lydie',
     };
     chai
@@ -87,9 +87,9 @@ describe('POST /register', () => {
 describe('POST /register', () => {
   it('user exist', (done) => {
     const user = {
-      name: 'prince',
-      email: 'prince@gmail.com',
-      password: 'prince',
+      name: 'lydie-250',
+      email: 'lydie-250@gmail.com',
+      password: 'lydie',
     };
     chai
       .request(server)
@@ -106,7 +106,7 @@ describe('POST /register', () => {
 describe('POST /login', () => {
   it('it should login the Current user', (done) => {
     const user = {
-      email: 'admin@gmail.com',
+      email: 'admin-250@gmail.com',
       password: 'admin',
     };
     chai
@@ -124,7 +124,7 @@ describe('POST /login', () => {
 describe('POST /login', () => {
   it('wrong credentials', (done) => {
     const user = {
-      email: 'lydie@gmail.com',
+      email: 'admin-250@gmail.com',
       password: '123',
     };
     chai
@@ -199,8 +199,8 @@ describe('POST /api/blog/create', () => {
       .request(server)
       .post('/api/blog/create')
       .set('cookie', `jwt=${process.env.ADMIN_TOKEN}`)
-      .field('blogname', 'javascript')
-      .field('blogdescription', '')
+      .field('blogname', 'python')
+      .field('blogdescription', 'its a book')
       .attach('image', fs.readFileSync(filePath), 'test_image.jpg')
       .end((err, res) => {
         res.should.have.status(200);
@@ -252,7 +252,7 @@ describe('POST /api/blog/delete/:_id', () => {
 describe('POST /api/blog/update/:id', () => {
   it('should update a blog', (done) => {
     const blogdata = {
-      blogname: 'javascript',
+      blogname: 'python book',
     };
     chai
       .request(server)
