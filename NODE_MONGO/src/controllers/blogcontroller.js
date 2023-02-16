@@ -78,7 +78,6 @@ const deleteBlog = async (req, res) => {
   try {
     const id = req.params._id;
     await blog.findByIdAndRemove({ _id: id }).then((data) => {
-      res.json(data);
       res.status(200).json({
         code: 200,
         message: 'deleted successful',

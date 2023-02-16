@@ -57,11 +57,10 @@ describe('POST /messages', () => {
           .end((err, res) => {
             res.should.have.status(200);
             res.should.be.json;
-            done();
           });
         chai
           .request(server)
-          .get('/user/contacts/delete/message/all')
+          .delete('/user/contacts/delete/message/all')
           .set('Cookie', `jwt=${token}`)
           .end((err, res) => {
             res.should.have.status(200);
@@ -88,9 +87,9 @@ describe('POST /register', () => {
         res.should.be.json;
         const token = res.body.token;
         const user = {
-          name: 'ornella',
-          email: 'ornella@gmail.com',
-          password: 'ornella',
+          name: 'eddison',
+          email: 'eddison@gmail.com',
+          password: 'eddison',
         };
         chai
           .request(server)
@@ -101,7 +100,7 @@ describe('POST /register', () => {
             res.should.be.json;
             const userid = res.body.MessageDeleted;
             const user = {
-              email: 'ornella@gmail.com',
+              email: 'eddison@gmail.com',
               password: '123',
             };
             chai
