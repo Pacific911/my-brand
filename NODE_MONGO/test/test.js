@@ -20,10 +20,10 @@ chai.use(chaihttp);
 describe('POST /messages', () => {
   it('it should send a new message', (done) => {
     const message = {
-      name: 'admin',
-      email: 'admin-250@gmail.com',
+      name: 'paccy',
+      email: 'pacy@gmail.com',
       subject: 'request',
-      message: 'make request',
+      message: 'make changes',
     };
     chai
       .request(server)
@@ -68,9 +68,9 @@ describe('POST /messages', () => {
 describe('POST /register', () => {
   it('it should not sign a new user if he exists', (done) => {
     const user = {
-      name: 'craig',
-      email: 'craig@gmail.com',
-      password: 'craig',
+      name: 'lydie',
+      email: 'lydie@gmail.com',
+      password: 'lydie',
     };
     chai
       .request(server)
@@ -87,9 +87,9 @@ describe('POST /register', () => {
 describe('POST /register', () => {
   it('user exist', (done) => {
     const user = {
-      name: 'drake-250',
-      email: 'drake-250@gmail.com',
-      password: 'drake',
+      name: 'prince',
+      email: 'prince@gmail.com',
+      password: 'prince',
     };
     chai
       .request(server)
@@ -106,8 +106,8 @@ describe('POST /register', () => {
 describe('POST /login', () => {
   it('it should login the Current user', (done) => {
     const user = {
-      email: 'craig@gmail.com',
-      password: 'craig',
+      email: 'admin@gmail.com',
+      password: 'admin',
     };
     chai
       .request(server)
@@ -124,7 +124,7 @@ describe('POST /login', () => {
 describe('POST /login', () => {
   it('wrong credentials', (done) => {
     const user = {
-      email: 'craig@gmail.com',
+      email: 'lydie@gmail.com',
       password: '123',
     };
     chai
