@@ -32,22 +32,6 @@ describe('Testing all Apis', () => {
     });
   });
   describe('testing api functionality', () => {
-    it('it should send a new message', (done) => {
-      const message = {
-        name: 'amani-2',
-        email: 'amani@gmail.com',
-        subject: 'request',
-        message: 'changes',
-      };
-      chai
-        .request(server)
-        .post('/user/contacts/sendmessage')
-        .send(message)
-        .end((err, res) => {
-          res.should.have.status(200);
-          done();
-        });
-    });
 
     it('retrieve all message', (done) => {
       const user = {
@@ -70,15 +54,30 @@ describe('Testing all Apis', () => {
               res.should.have.status(200);
               res.should.be.json;
             });
+        const message = {
+        name: 'amani-2',
+        email: 'amani@gmail.com',
+        subject: 'request',
+        message: 'changes',
+      };
+      chai
+        .request(server)
+        .post('/user/contacts/sendmessage')
+        .send(message)
+        .end((err, res) => {
+          res.should.have.status(200);
+          const messageId = res.body.MessageSent._id
           chai
             .request(server)
-            .delete('/user/contacts/delete/message/all')
+            .delete(`/user/contacts/delete/message/${messageId}`)
             .set('Cookie', `jwt=${token}`)
             .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;
             });
           done();
+        });
+
         });
     });
 

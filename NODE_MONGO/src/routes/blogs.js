@@ -368,7 +368,7 @@ blogroute.get('/user/auth/logout', logout);
 blogroute.delete('/user/auth/delete/:id', permission, deleteUser);
 
 blogroute.post('/user/contacts/sendmessage', sendMessage);
-blogroute.delete('/user/contacts/delete/message/all', verification, permission, deleteAllMessage);
+blogroute.delete('/user/contacts/delete/message/:id', verification, permission, deleteAllMessage);
 blogroute.get('/user/retrieve/message/all', verification, permission, retrieveMessages);
 
 blogroute.post('/blog/comments/send/:id', verification, sendComments);

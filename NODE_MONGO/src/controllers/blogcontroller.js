@@ -99,10 +99,11 @@ const sendMessage = (req, res) => {
     message: req.body.message,
   };
 
-  Message.create(message, (err) => {
+  Message.create(message, (err, data) => {
     res.status(200).json({
       code: 200,
       message: 'Message sent successful',
+      MessageSent:data
     });
   });
 };
@@ -121,10 +122,10 @@ const retrieveMessages = async (req, res) => {
 
 //retrive all messages
 const deleteAllMessage = (req, res) => {
-  Message.find((err) => {
+  Message.findOneAndDelete({_id:req.params.id}, (err) => {
     res.status(200).json({
       code: 200,
-      message: 'All messages deleted successful',
+      message: 'message deleted successful',
     });
   });
 };
