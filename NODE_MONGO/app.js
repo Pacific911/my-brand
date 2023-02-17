@@ -5,12 +5,16 @@ const blogroute = require("./src/routes/blogs");
 const app = express() 
 const cookie_parser = require('cookie-parser');
 const verifyUser = require('./src/middlewares/verify User');
+const cors = require('cors');
+
 
 
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 const Morgan = require('morgan')
 app.use(Morgan("tiny"));
+
+app.use(cors());
 
 
 
