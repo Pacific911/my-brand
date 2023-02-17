@@ -31,9 +31,7 @@ describe('Testing all Apis', () => {
       done();
     });
   });
-
-
-  describe('POST /messages', () => {
+  describe('testing api functionality', () => {
     it('it should send a new message', (done) => {
       const message = {
         name: 'amani-2',
@@ -50,9 +48,7 @@ describe('Testing all Apis', () => {
           done();
         });
     });
-  });
 
-  describe('POST /messages', () => {
     it('retrieve all message', (done) => {
       const user = {
         email: 'admin-250@gmail.com',
@@ -85,10 +81,7 @@ describe('Testing all Apis', () => {
             });
         });
     });
-  });
 
-  // /* ------------- test for user --------*/
-  describe('POST /register', () => {
     it('it should register a new user and delete', (done) => {
       const user = {
         email: 'admin-250@gmail.com',
@@ -138,9 +131,7 @@ describe('Testing all Apis', () => {
             });
         });
     });
-  });
 
-  describe('POST /user exist', () => {
     it('user exist', (done) => {
       const user = {
         name: 'ornella',
@@ -157,9 +148,7 @@ describe('Testing all Apis', () => {
           done();
         });
     });
-  });
 
-  describe('POST /login', () => {
     it('user does not exist', (done) => {
       const user = {
         email: 'kagame@gmail.com',
@@ -175,9 +164,7 @@ describe('Testing all Apis', () => {
           done();
         });
     });
-  });
 
-  describe('GET /logout', () => {
     it('it should logout a user', (done) => {
       chai
         .request(server)
@@ -188,31 +175,6 @@ describe('Testing all Apis', () => {
           done();
         });
     });
-  });
-
-  // /* ---------- test for comments ---------*/
-
-  // describe('POST /blogs/comment/:id', () => {
-  //   it('it should send a new comment if the token is valid(loged in)', (done) => {
-  //     const cmnt = {
-  //       comment: 'nice book',
-  //     };
-  //     chai
-  //       .request(server)
-  //       .post('/blog/comments/send/' + process.env.BLOG_ID)
-  //       .set('cookie', `jwt=${process.env.USER_TOKEN}`)
-  //       .send(cmnt)
-  //       .end((err, res) => {
-  //         res.should.have.status(200);
-  //         res.should.be.json;
-  //         done();
-  //       });
-  //   });
-  // });
-
-  // /* -------------- test to view blog --------- */
-
-  describe('POST /api/blog/create', () => {
     it('create blog', (done) => {
       const user = {
         email: 'admin-250@gmail.com',
@@ -274,4 +236,29 @@ describe('Testing all Apis', () => {
         });
     });
   });
+
+
+
+  // /* ---------- test for comments ---------*/
+
+  //   describe('POST /blogs/comment/:id', () => {
+  //     it('it should send a new comment if the token is valid(loged in)', (done) => {
+  //       const cmnt = {
+  //         comment: 'nice book',
+  //       };
+  //       chai
+  //         .request(server)
+  //         .post('/blog/comments/send/' + process.env.BLOG_ID)
+  //         .set('cookie', `jwt=${process.env.USER_TOKEN}`)
+  //         .send(cmnt)
+  //         .end((err, res) => {
+  //           res.should.have.status(200);
+  //           res.should.be.json;
+  //           done();
+  //         });
+  //     });
+  //   });
+
+  // /* -------------- test to view blog --------- */
+
 });
