@@ -23,7 +23,8 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "mocha --exit --timeout 80000 ",
-    "coverage": "nyc --reporter=lcov npm run test"
+    "coverage": "nyc --reporter=html --reporter=lcov npm run test"
+
   },
   "devDependencies": {
     "chai": "^4.3.7",
