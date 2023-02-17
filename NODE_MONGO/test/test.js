@@ -187,7 +187,7 @@ describe('Testing all Apis', () => {
           res.should.have.status(200);
           res.should.be.json;
           const token = res.body.token;
-          const filePath = __dirname + '/test_image.jpg'; // path to the file you want to upload
+          const filePath = __dirname + '/test_image.jpg'; 
           chai
             .request(server)
             .post('/api/blog/create')
