@@ -77,8 +77,8 @@ describe('Testing all Apis', () => {
             .end((err, res) => {
               res.should.have.status(200);
               res.should.be.json;
-              done();
             });
+          done();
         });
     });
 
@@ -127,8 +127,8 @@ describe('Testing all Apis', () => {
                 .end((err, res) => {
                   res.should.have.status(200);
                 });
-              done();
             });
+          done();
         });
     });
 
@@ -230,14 +230,12 @@ describe('Testing all Apis', () => {
                 .set('cookie', `jwt=${token}`)
                 .end((err, res) => {
                   res.should.have.status(200);
-                  done();
                 });
+              done();
             });
         });
     });
   });
-
-
 
   // /* ---------- test for comments ---------*/
 
@@ -260,5 +258,4 @@ describe('Testing all Apis', () => {
   //   });
 
   // /* -------------- test to view blog --------- */
-
 });
