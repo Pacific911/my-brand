@@ -358,7 +358,7 @@ blogroute.post(
   permission,
   createBlog,
 );
-blogroute.get('/api/blog/retrieve/all', verification, permission, viewBlog);
+blogroute.get('/api/blog/retrieve/all', viewBlog);
 blogroute.get('/api/blog/retrieve/single/:id',verification, permission, singleblog);
 blogroute.patch('/api/blog/update/:id', verification, permission, uploads.single('image'), updateBlog);
 blogroute.delete('/api/blog/delete/:_id', verification, permission, deleteBlog);
