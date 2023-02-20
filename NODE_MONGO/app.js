@@ -7,6 +7,12 @@ const cookie_parser = require('cookie-parser');
 const verifyUser = require('./src/middlewares/verify User');
 const cors = require('cors');
 
+app.use(
+  cors({
+    origin: '*',
+  }),
+);
+
 
 
 const swaggerJSDoc = require('swagger-jsdoc')
@@ -47,7 +53,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 
-app.use(cors());
+
 app.use(express.json())
 app.use(cookie_parser());
 app.all('*', verifyUser);

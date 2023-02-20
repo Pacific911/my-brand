@@ -351,13 +351,7 @@ const uploads = multer({ storage, fileFilter });
  *              description: Unable to update blog
  */
 
-blogroute.post(
-  '/api/blog/create',
-  uploads.single('image'),
-  verification,
-  permission,
-  createBlog,
-);
+blogroute.post('/api/blog/create', uploads.single('image'), verification, permission, createBlog);
 blogroute.get('/api/blog/retrieve/all', viewBlog);
 blogroute.get('/api/blog/retrieve/single/:id',verification, permission, singleblog);
 blogroute.patch('/api/blog/update/:id', verification, permission, uploads.single('image'), updateBlog);
