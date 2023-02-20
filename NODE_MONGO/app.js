@@ -1,28 +1,28 @@
 const express = require('express');
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const database = require('./src/configs/database');
-const blogroute = require("./src/routes/blogs");
-const app = express() 
+const blogroute = require('./src/routes/blogs');
+const app = express();
 const cookie_parser = require('cookie-parser');
 const verifyUser = require('./src/middlewares/verify User');
 const cors = require('cors');
+
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const Morgan = require('morgan');
+app.use(Morgan('tiny'));
+
+app.listen(process.env.PORT, () => {
+  console.log('Server has started!');
+});
+
+database();
 
 app.use(
   cors({
     origin: '*',
   }),
 );
-
-
-
-const swaggerJSDoc = require('swagger-jsdoc')
-const swaggerUi = require('swagger-ui-express')
-const Morgan = require('morgan')
-app.use(Morgan("tiny"));
-
-
-
-
 
 const options = {
   definition: {
@@ -50,25 +50,13 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-
-
-
-
-app.use(express.json())
+app.use(express.json());
 app.use(cookie_parser());
 app.all('*', verifyUser);
-app.use(blogroute)
-
-
+app.use(blogroute);
 
 var ejs = require('ejs');
 const { api } = require('./src/utils/helper.util');
 app.set('view engine', 'ejs');
 
-database()
-
-app.listen(process.env.PORT, () => {
-    console.log('Server has started!');
-})
-
-module.exports = app
+module.exports = app;
