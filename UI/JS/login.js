@@ -76,20 +76,4 @@ async function loginFunc(event){
 
 
 
-// let loginform = document.querySelector('#login-form');
-// console.log(loginform);
-// loginform.addEventListener('submit', (e) =>{
-//     var username = document.getElementById('username').value;
-//     var pass = document.getElementById('password').value;
 
-//     var users = JSON.parse(localStorage.getItem("users"));
-//     const user = users.filter(user => user.username===username && user.password === pass)
-//     // console.log(users)
-//     if(user){
-//          location.replace("index.html")
-//     }
-//     else{
-//         console.log("invalid credentilas")
-//     }
-
-// })

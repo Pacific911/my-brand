@@ -141,8 +141,6 @@ const login = async (req, res, Msg) => {
     if (aunthentication) {
       const token = generate(userLogin._id);
       res.cookie('jwt', token);
-      res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
-      res.setHeader('Access-Control-Allow-Credentials', 'true');
       res.status(200).json({
         code: 200,
         message: 'logged in successful',
@@ -192,8 +190,6 @@ const register = async (req, res, Msg) => {
       });
       const token = generate(dta._id);
       res.cookie('jwt', token);
-      res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
-      res.setHeader('Access-Control-Allow-Credentials', 'true');
       res.status(200).json({
         statuscode: 200,
         message: 'Registered successful',
