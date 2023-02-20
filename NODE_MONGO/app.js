@@ -33,6 +33,7 @@ const options = {
     },
     servers: [
       {
+        url: 'http://localhost:5000',
         url: 'https://my-brand-production-bf0a.up.railway.app/',
       },
     ],
