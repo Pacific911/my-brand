@@ -14,7 +14,7 @@ const swaggerUi = require('swagger-ui-express')
 const Morgan = require('morgan')
 app.use(Morgan("tiny"));
 
-app.use(cors());
+
 
 
 
@@ -24,18 +24,18 @@ const options = {
     info: {
       title: 'API-LIBRARY',
       version: '1.0.0',
-      description: "Blogs, Messages and User apis",
-        contact: {
-          name: "NDUWUMWE Pacific", 
-          email: "nduwumwepacific@gmail.com", 
-          url: "web.com",
-    }
+      description: 'Blogs, Messages and User apis',
+      contact: {
+        name: 'NDUWUMWE Pacific',
+        email: 'nduwumwepacific@gmail.com',
+        url: 'web.com',
+      },
     },
     servers: [
       {
-        url: 'http://localhost:5000'
-      }
-    ]
+        url: 'https://my-brand-production-bf0a.up.railway.app/',
+      },
+    ],
   },
   apis: ['./src/routes/blogs.js'],
 };
@@ -46,7 +46,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 
-
+app.use(cors());
 app.use(express.json())
 app.use(cookie_parser());
 app.all('*', verifyUser);
