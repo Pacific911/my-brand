@@ -12,7 +12,7 @@ const adminAction = (req, res, next) => {
       if (decodedtoken) {
         const data = await User.findById(decodedtoken.id);
         if (data) {
-          if (data.email == 'admin-250@gmail.com' && data.password == 'admin') {
+          if (res.user.role == 'admin') {
             next();
           } else {
             res

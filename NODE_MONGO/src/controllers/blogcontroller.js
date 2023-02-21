@@ -31,6 +31,9 @@ const createBlog = async (req, res) => {
     }
   } catch (error) {
     console.log({ error: error });
+    res.status(404).json({
+      code: 404,
+    });
   }
 };
 
@@ -185,6 +188,7 @@ const register = async (req, res, Msg) => {
     if (User == null) {
       const dta = await user.create({
         name: req.body.name,
+        role:'admin',
         email: req.body.email,
         password: req.body.password,
       });

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">92% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/25</span>
+                <span class='fraction'>23/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">92% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/25</span>
+                <span class='fraction'>23/25</span>
             </div>
         
             
@@ -434,13 +434,7 @@
 <a name='L369'></a><a href='#L369'>369</a>
 <a name='L370'></a><a href='#L370'>370</a>
 <a name='L371'></a><a href='#L371'>371</a>
-<a name='L372'></a><a href='#L372'>372</a>
-<a name='L373'></a><a href='#L373'>373</a>
-<a name='L374'></a><a href='#L374'>374</a>
-<a name='L375'></a><a href='#L375'>375</a>
-<a name='L376'></a><a href='#L376'>376</a>
-<a name='L377'></a><a href='#L377'>377</a>
-<a name='L378'></a><a href='#L378'>378</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L372'></a><a href='#L372'>372</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -463,8 +457,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -794,12 +788,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -839,9 +827,9 @@ const { verification } = require('../middlewares/auth');
 const permission = require('../middlewares/permission');
 &nbsp;
 const storage = multer.diskStorage({});
-const fileFilter = (req, file, cb) =&gt; {
-  <span class="missing-if-branch" title="else path not taken" >E</span>if (file.mimetype.startsWith('image')) {
-    cb(null, true);
+const fileFilter = <span class="fstat-no" title="function not covered" >(r</span>eq, file, cb) =&gt; {
+<span class="cstat-no" title="statement not covered" >  if (file.mimetype.startsWith('image')) {</span>
+<span class="cstat-no" title="statement not covered" >    cb(null, true);</span>
   } 
   // else {
   //   cb('Invalid image file', false);
@@ -1170,14 +1158,8 @@ const uploads = multer({ storage, fileFilter });
  *              description: Unable to update blog
  */
 &nbsp;
-blogroute.post(
-  '/api/blog/create',
-  uploads.single('image'),
-  verification,
-  permission,
-  createBlog,
-);
-blogroute.get('/api/blog/retrieve/all', verification, permission, viewBlog);
+blogroute.post('/api/blog/create', uploads.single('image'), verification, permission, createBlog);
+blogroute.get('/api/blog/retrieve/all', viewBlog);
 blogroute.get('/api/blog/retrieve/single/:id',verification, permission, singleblog);
 blogroute.patch('/api/blog/update/:id', verification, permission, uploads.single('image'), updateBlog);
 blogroute.delete('/api/blog/delete/:_id', verification, permission, deleteBlog);
@@ -1201,7 +1183,7 @@ module.exports = blogroute;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-17T22:37:21.437Z
+                at 2023-02-21T22:36:10.831Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -1,4 +1,5 @@
 const jwtoken = require('jsonwebtoken');
+const User =require("../models/users.js")
 // jwt verification
 const verification = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -8,7 +9,10 @@ const verification = (req, res, next) => {
         res.status(401).json({ Error: 'please first login  !!' });
       }
       if (decodedtoken) {
-        next();
+        User.findOne({ _id: decodedtoken.id }, (err, data) => {
+          res.user = data
+          next();
+        })
       }
     });
   } else {
