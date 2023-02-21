@@ -7,6 +7,8 @@ const cookie_parser = require('cookie-parser');
 const verifyUser = require('./src/middlewares/verify User');
 const cors = require('cors');
 
+app.use(cors());
+
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const Morgan = require('morgan');
@@ -18,7 +20,7 @@ app.listen(process.env.PORT, () => {
 
 database();
 
-app.use(cors());
+
 
 const options = {
   definition: {
