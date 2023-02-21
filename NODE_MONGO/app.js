@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const database = require('./src/configs/database');
 const blogroute = require('./src/routes/blogs');
+const cors = require('cors');
 const app = express();
 const cookie_parser = require('cookie-parser');
 const verifyUser = require('./src/middlewares/verify User');
-const cors = require('cors');
+
+
 
 app.use(cors());
 
