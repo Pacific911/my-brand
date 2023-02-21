@@ -22,15 +22,24 @@ Button.addEventListener('click', async (e) => {
     const res = await fetch(
       'https://my-brand-production-bf0a.up.railway.app/user/auth/register',
       {
+  
+        mode: 'no-cors',
         method: 'POST',
-        body: JSON.stringify({ email, name, password }),
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'server':'railway',
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: pass,
+        }),
       },
-    );
+    ).catch(error => console.log(error)) 
     const data = await res.json();
-    console.log(res);
+    console.log(data);
 
-    
     // if (!ValidateEmail(email)) {
     //   // console.log('invalid email');
     //   error.textContent = '';

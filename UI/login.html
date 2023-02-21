@@ -13,6 +13,7 @@
     <title>Login Form</title>
   </head>
   <body>
+    <div class="logout-notification" style="font-size: 15px; display: none;"><h3>logged out successfully</h3></div>
     <div class="container" id="main">
       <div class="sign-in">
         <form>
@@ -61,8 +62,6 @@
     <!-- <script src="../JS/login.js"></script> -->
 
     <script>
-      let a = localStorage.getItem('users');
-      const b = JSON.parse(a);
       async function loginFunc(event) {
         event.preventDefault();
 
@@ -81,7 +80,19 @@
             },
           );
           const data = await res.json();
-          console.log(data);
+        //   console.log(data);
+          if (data.code == 200) {
+            localStorage.setItem('token', JSON.stringify(data.token))
+            if (email == 'admin-250@gmail.com') {
+              location.href = '/UI/dashboards/Dashboard.html';
+            } else {
+              location.href = '/';
+            }
+            error.textContent = '';
+          } else {
+            /*----send error to the input field ---*/
+            error.textContent = data.message;
+          }
           // const userIndex = b.findIndex(usr=> usr.username == username)
           // if(userIndex != -1){
           //     if(username == 'admin'){
@@ -114,12 +125,8 @@
         } else {
           error.textContent = 'fill all the fields';
         }
-
-        var users = JSON.parse(localStorage.getItem('users'));
-        const user = users.filter(
-          (user) => user.email === email && user.password === pass,
-        );
       }
     </script>
+    <script src="/UI//JS//logout.js"></script>
   </body>
 </html>
