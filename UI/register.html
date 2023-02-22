@@ -1,45 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="./img/profile.jfif">
-    <link rel="stylesheet" href="styles/authentication.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./img/profile.jfif" />
+    <link rel="stylesheet" href="styles/authentication.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
     <title>Register Form</title>
-
-
-    
-</head>
-<body>
+  </head>
+  <body>
     <div class="container" id="main">
-        <div class="sign-in">
-            <form id="signup-form">
-                    <h1>Create Account</h1>
-                    <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                    <p>Or use your email registration</p>
-                    <h4 id="error" style="color: red; font-weight: bold;"></h4>
-                    <input type="text" name="name" id="name" placeholder="enter your name">
-                    <input type="email" name="email" id="email" placeholder="Email">
-                    <input type="password" name="password" id="password" placeholder="Password">
-                    <button id="btn-submit">Sign Up</button>
-            </form>
+      <div class="sign-in">
+        <form id="signup-form">
+          <h1>Create Account</h1>
+          <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-github"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin"></i></a>
+          </div>
+          <p>Or use your email registration</p>
+          <h4 id="error" style="color: red; font-weight: bold"></h4>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="enter your name"
+          />
+          <input type="email" name="email" id="email" placeholder="Email" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <button id="btn-submit">Sign Up</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-right">
+            <h1>Welcome User!</h1>
+            <p>
+              To Keep Connected with us please login with your personal info
+            </p>
+            <a href="./login.html"><button id="signIn">Login In</button></a>
+          </div>
         </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-right">
-                    <h1>Welcome User!</h1>
-                    <p>To Keep Connected with us please login with your personal info</p>
-                    <a href="./login.html"><button id="signIn">Login In</button></a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <script src="./JS/register.js"></script>
-</body>
+    <!-- <script src="./JS/register.js"></script> -->
+
+    <script>
+      let form = document.querySelector('#signup-form');
+
+      var Button = document.querySelector('#btn-submit');
+
+      Button.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        var email = document.getElementById('email').value;
+        var name = document.getElementById('name').value;
+        var pass = document.getElementById('password').value;
+        var error = document.getElementById('error');
+
+        if (email && name && pass) {
+          console.log('correct');
+          const res = await fetch(
+            'https://my-brand-production-bf0a.up.railway.app/user/auth/register',
+            {
+              mode: 'no-cors',
+              method: 'POST',
+              body: JSON.stringify({ name:name, email:email, password:password }),
+              headers: { 'Content-Type': 'application/json' },
+            },
+          );
+          const data = await res.json();
+          console.log(data);
+          // if (!ValidateEmail(email)) {
+          //   // console.log('invalid email');
+          //   error.textContent = '';
+          //   error.textContent = 'Invalid email';
+          // } else {
+          //   error.textContent = '';
+          //   var user = {
+          //     email: email,
+          //     username: username,
+          //     password: pass,
+          //   };
+          //   console.log(user);
+          //   storedData(user);
+          // }
+        } else {
+          // error.textContent ='';
+
+          error.textContent = 'Fill all the fields';
+          console.log(error.textContent);
+          console.log('correct data');
+        }
+      });
+    </script>
+  </body>
 </html>

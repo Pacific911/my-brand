@@ -101,44 +101,52 @@
     <!-- <script src="/JS/viewMessages.js"></script> -->
 
     <script>
-      fetch(
-        'https://my-brand-production-bf0a.up.railway.app/user/retrieve/message/all',
-      )
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-        });
-
       const messagesDOM = document.getElementById('blogs-section');
-
-      let oldMessages = JSON.parse(localStorage.getItem('messages')) ?? [];
-      console.log(oldMessages);
-
-      oldMessages.forEach((message, index) => {
-        messagesDOM.insertAdjacentHTML(
-          'beforebegin',
-          `<tr>
-    <td>${index + 1}</td>
-    <td>${message.name}</td>
-    <td>${message.email}</td>
-    <td>${message.subject}</td>
-    <td>${message.message}</td>
-    <td><a href="mailto:${message.email}"><i class="fa fa-reply"></i></a></td>
-    <td><i class="fa fa-trash-o delete" data-id=${message.id}></i></td>
-</tr>
-`,
+      sms();
+      async function sms() {
+        const res = await fetch(
+          'https://my-brand-production-bf0a.up.railway.app/user/retrieve/message/all',
+          {
+            method: 'GET',
+            headers: {
+              // Authentication: `Bearer ${cookies.jwt}`,
+              'Content-Type': 'application/json',
+            },
+          },
         );
-      });
-      const deleteButtons = [...document.getElementsByClassName('delete')];
-      console.log(deleteButtons);
-      deleteButtons.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          const deleteId = e.target.dataset.id;
-          deleteMessage(deleteId);
+        const data = await res.json();
+        console.log(data.messages);
+        data.messages.forEach((message, index) => {
+          messagesDOM.insertAdjacentHTML(
+            'beforebegin',
+            `<tr>
+          <td>${index + 1}</td>
+          <td>${message.name}</td>
+          <td>${message.email}</td>
+          <td>${message.subject}</td>
+          <td>${message.message}</td>
+          <td><a href="mailto:${
+            message.email
+          }"><i class="fa fa-reply"></i></a></td>
+          <td><i class="fa fa-trash-o delete" data-id=${message.id}></i></td>
+      </tr>
+      `,
+          );
         });
-      });
+
+        
+        const deleteButtons = [...document.getElementsByClassName('delete')];
+        console.log(deleteButtons);
+        deleteButtons.forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            const deleteId = e.target.dataset.id;
+            deleteMessage(deleteId);
+          });
+        });
+      }
+
+      // let oldMessages = JSON.parse(localStorage.getItem('messages')) ?? [];
+      // console.log(oldMessages);
 
       function deleteMessage(deleteId) {
         const updatedMessages = oldMessages.filter(({ id }) => id != deleteId);

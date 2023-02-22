@@ -22,15 +22,15 @@ chai.use(chaihttp);
 /* -------------- test all apis--------------*/
 
 describe('Testing all Apis', () => {
-  // before(function (done) {
-  //   mongoose.connect(process.env.MONGO_URL);
-  //   const db = mongoose.connection;
-  //   db.on('error', console.error.bind(console, 'connection error'));
-  //   db.once('open', function () {
-  //     console.log('Connected to test database!');
-  //     done();
-  //   });
-  // });
+  before(function (done) {
+    mongoose.connect(process.env.MONGO_URL);
+    const db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error'));
+    db.once('open', function () {
+      console.log('Connected to test database!');
+      done();
+    });
+  });
   describe('testing api functionality', () => {
     it('retrieve all message', (done) => {
       const user = {
@@ -80,15 +80,15 @@ describe('Testing all Apis', () => {
     });
 
     it('it should register a new user and delete', (done) => {
-      const user = {
+      const user1 = {
         email: 'admin-250@gmail.com',
         password: 'admin',
       };
       chai
         .request(server)
         .post('/user/auth/login')
-        .send(user)
-        .end((err, res) => {
+        .send(user1)
+        .end(async (err, res) => {
           res.should.have.status(200);
           res.should.be.json;
           const token = res.body.token;
@@ -97,11 +97,11 @@ describe('Testing all Apis', () => {
             email: 'martin@gmail.com',
             password: '12345',
           };
-          chai
+          await chai
             .request(server)
             .post('/user/auth/register')
             .send(user)
-            .end((err, res) => {
+            .then(async (res) => {
               res.should.have.status(200);
               res.should.be.json;
               const userid = res.body.MessageDeleted;
@@ -109,19 +109,19 @@ describe('Testing all Apis', () => {
                 email: 'derrick@gmail.com',
                 password: '123',
               };
-              chai
+              await chai
                 .request(server)
                 .post('/user/auth/login')
                 .send(user)
-                .end((err, res) => {
+                .then((res) => {
                   res.should.have.status(404);
                   res.should.be.json;
                 });
-              chai
+             await chai
                 .request(server)
                 .delete(`/user/auth/delete/${userid}`)
                 .set('Cookie', `jwt=${token}`)
-                .end((err, res) => {
+                .then((res) => {
                   res.should.have.status(200);
                   done();
                 });
@@ -162,16 +162,16 @@ describe('Testing all Apis', () => {
       done();
     });
 
-    // it('it should logout a user', (done) => {
-    //   chai
-    //     .request(server)
-    //     .get('/user/auth/logout')
-    //     .end((err, res) => {
-    //       res.should.have.status(200);
-    //       res.should.be.json;
-    //       done();
-    //     });
-    // });
+    it('it should logout a user', (done) => {
+      chai
+        .request(server)
+        .get('/user/auth/logout')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.json;
+          done();
+        });
+    });
     it('create blog', (done) => {
       const user2 = {
         email: 'admin-250@gmail.com',

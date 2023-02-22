@@ -360,7 +360,7 @@ blogroute.delete('/api/blog/delete/:_id', verification, permission, deleteBlog);
 blogroute.post('/user/auth/register', register);
 blogroute.post('/user/auth/login', login);
 blogroute.get('/user/auth/logout', logout);
-blogroute.delete('/user/auth/delete/:id', permission, deleteUser);
+blogroute.delete('/user/auth/delete/:id',verification, permission, deleteUser);
 
 blogroute.post('/user/contacts/sendmessage', sendMessage);
 blogroute.delete('/user/contacts/delete/message/:id', verification, permission, deleteAllMessage);

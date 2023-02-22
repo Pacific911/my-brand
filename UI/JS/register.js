@@ -1,11 +1,4 @@
 let form = document.querySelector('#signup-form');
-// let users = JSON.parse(localStorage.getItem("users")) ?? [];
-// function storedData(currentUser) {
-//   users.push(currentUser);
-//   localStorage.setItem('users', JSON.stringify(users));
-//   alert('Registered Successfully');
-//   window.location.reload();
-// }
 
 var Button = document.querySelector('#btn-submit');
 
@@ -22,24 +15,18 @@ Button.addEventListener('click', async (e) => {
     const res = await fetch(
       'https://my-brand-production-bf0a.up.railway.app/user/auth/register',
       {
-  
         mode: 'no-cors',
         method: 'POST',
+        body: JSON.stringify({ name, email, password }),
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
-          'server':'railway',
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          password: pass,
-        }),
+          server: 'railway',
+        }
       },
-    ).catch(error => console.log(error)) 
+    );
     const data = await res.json();
     console.log(data);
-
     // if (!ValidateEmail(email)) {
     //   // console.log('invalid email');
     //   error.textContent = '';
