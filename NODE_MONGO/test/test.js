@@ -117,7 +117,7 @@ describe('Testing all Apis', () => {
                   res.should.have.status(404);
                   res.should.be.json;
                 });
-             await chai
+              await chai
                 .request(server)
                 .delete(`/user/auth/delete/${userid}`)
                 .set('Cookie', `jwt=${token}`)
@@ -257,6 +257,14 @@ describe('Testing all Apis', () => {
             .set('cookie', `jwt=${token}`)
             .end((err, res) => {
               res.should.have.status(200);
+              res.should.be.json;
+            });
+          chai
+            .request(server)
+            .post('/blog/comments/send/63effdf2af801489021845ed1')
+            .set('cookie', `jwt=${token}`)
+            .end((err, res) => {
+              res.should.have.status(400);
               res.should.be.json;
             });
         });

@@ -103,11 +103,16 @@ const sendMessage = (req, res) => {
   };
 
   Message.create(message, (err, data) => {
-    res.status(200).json({
-      code: 200,
-      message: 'Message sent successful',
-      MessageSent: data,
-    });
+    if (data) {
+      res.status(200).json({
+        code: 200,
+        message: 'Message sent successful',
+        MessageSent: data,
+      });
+    }
+    if(err){
+      res.status(err)
+    }
   });
 };
 
@@ -188,7 +193,7 @@ const register = async (req, res, Msg) => {
     if (User == null) {
       const dta = await user.create({
         name: req.body.name,
-        role:'admin',
+        role: 'admin',
         email: req.body.email,
         password: req.body.password,
       });
