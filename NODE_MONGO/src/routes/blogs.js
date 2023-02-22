@@ -8,7 +8,7 @@ const {
   updateBlog,
   deleteBlog,
   sendMessage,
-  deleteAllMessage,
+  deleteMessage,
   retrieveMessages,
   register,
   login,
@@ -23,7 +23,7 @@ const storage = multer.diskStorage({});
 const fileFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
-  } 
+  }
   // else {
   //   cb('Invalid image file', false);
   // }
@@ -351,19 +351,36 @@ const uploads = multer({ storage, fileFilter });
  *              description: Unable to update blog
  */
 
-blogroute.post('/api/blog/create', uploads.single('image'), verification, permission, createBlog);
+blogroute.post(
+  '/api/blog/create',
+  uploads.single('image'),
+  verification,
+  permission,
+  createBlog,
+);
 blogroute.get('/api/blog/retrieve/all', viewBlog);
-blogroute.get('/api/blog/retrieve/single/:id',verification, permission, singleblog);
-blogroute.patch('/api/blog/update/:id', verification, permission, uploads.single('image'), updateBlog);
+blogroute.get(
+  '/api/blog/retrieve/single/:id',
+  verification,
+  permission,
+  singleblog,
+);
+blogroute.patch(
+  '/api/blog/update/:id',
+  verification,
+  permission,
+  uploads.single('image'),
+  updateBlog,
+);
 blogroute.delete('/api/blog/delete/:_id', verification, permission, deleteBlog);
 
 blogroute.post('/user/auth/register', register);
 blogroute.post('/user/auth/login', login);
 blogroute.get('/user/auth/logout', logout);
-blogroute.delete('/user/auth/delete/:id',verification, permission, deleteUser);
+blogroute.delete('/user/auth/delete/:id', verification, permission, deleteUser);
 
 blogroute.post('/user/contacts/sendmessage', sendMessage);
-blogroute.delete('/user/contacts/delete/message/:id', verification, permission, deleteAllMessage);
+blogroute.delete('/user/contacts/delete/message/:id', verification, permission, deleteMessage);
 blogroute.get('/user/retrieve/message/all', retrieveMessages);
 
 blogroute.post('/blog/comments/send/:id', verification, sendComments);

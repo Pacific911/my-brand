@@ -101,7 +101,7 @@ const sendMessage = (req, res) => {
     subject: req.body.subject,
     message: req.body.message,
   };
-
+  console.log(message);
   Message.create(message, (err, data) => {
     if (data) {
       res.status(200).json({
@@ -129,7 +129,7 @@ const retrieveMessages = async (req, res) => {
 };
 
 //retrive all messages
-const deleteAllMessage = (req, res) => {
+const deleteMessage = (req, res) => {
   Message.findOneAndDelete({ _id: req.params.id }, (err) => {
     res.status(200).json({
       code: 200,
@@ -193,7 +193,7 @@ const register = async (req, res, Msg) => {
     if (User == null) {
       const dta = await user.create({
         name: req.body.name,
-        role: 'admin',
+        role: 'user',
         email: req.body.email,
         password: req.body.password,
       });
@@ -252,7 +252,7 @@ module.exports = {
   updateBlog,
   deleteBlog,
   sendMessage,
-  deleteAllMessage,
+  deleteMessage,
   retrieveMessages,
   register,
   login,
