@@ -111,7 +111,7 @@ const sendMessage = (req, res) => {
       });
     }
     if(err){
-      res.status(err)
+      res.json(err)
     }
   });
 };
