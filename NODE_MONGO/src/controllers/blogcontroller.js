@@ -10,6 +10,7 @@ require('dotenv').config();
 //creating blogs
 
 const createBlog = async (req, res) => {
+  console.log(req.body)
   const { blogname, image, blogdescription } = req.body;
   const result = await cloudinary.uploader.upload(req.file.path, {
     folder: 'blog/blogImage',
