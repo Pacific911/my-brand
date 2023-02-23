@@ -54,9 +54,9 @@ describe('Testing all Apis', () => {
               res.should.be.json;
             });
           const message = {
-            name: 'eddy',
-            email: 'eddy@gmail.com',
-            subject: 'request data',
+            name: 'paccy',
+            email: 'paccy@gmail.com',
+            subject: 'request information',
             message: 'change data',
           };
           chai
@@ -148,7 +148,7 @@ describe('Testing all Apis', () => {
 
     it('user does not exist', (done) => {
       const user = {
-        email: 'paccy@gmail.com',
+        email: 'drake@gmail.com',
         password: '',
       };
       chai
