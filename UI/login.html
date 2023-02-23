@@ -13,7 +13,9 @@
     <title>Login Form</title>
   </head>
   <body>
-    <div class="logout-notification" style="font-size: 15px; display: none;"><h3>logged out successfully</h3></div>
+    <div class="logout-notification" style="font-size: 15px; display: none">
+      <h3>logged out successfully</h3>
+    </div>
     <div class="container" id="main">
       <div class="sign-in">
         <form>
@@ -80,11 +82,13 @@
             },
           );
           const data = await res.json();
-        //   console.log(data);
+          document.cookie = `jwt=${data.token}`;
+          console.log(data);
           if (data.code == 200) {
-            localStorage.setItem('token', JSON.stringify(data.token))
+            localStorage.setItem('token', JSON.stringify(data.token));
             if (email == 'admin-250@gmail.com') {
               location.href = '/UI/dashboards/Dashboard.html';
+              alert('logged in successfull')
             } else {
               location.href = '/';
             }

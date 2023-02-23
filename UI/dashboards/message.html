@@ -128,31 +128,56 @@
           <td><a href="mailto:${
             message.email
           }"><i class="fa fa-reply"></i></a></td>
-          <td><i class="fa fa-trash-o delete" data-id=${message.id}></i></td>
-      </tr>
-      `,
+          <td><i class="fa fa-trash-o delete" data-id=${
+            message._id
+          } onclick="remove('${message._id}')"></i></td>
+             </tr>`,
           );
         });
 
-        
         const deleteButtons = [...document.getElementsByClassName('delete')];
-        console.log(deleteButtons);
-        deleteButtons.forEach((btn) => {
-          btn.addEventListener('click', (e) => {
-            const deleteId = e.target.dataset.id;
-            deleteMessage(deleteId);
-          });
+
+        https: deleteButtons.forEach((btn) => {
+          // btn.addEventListener('click', (e) => {
+          //   e.preventDefault();
+          //   // const deleteId = e.target.dataset.id;
+          //   // console.log(deleteId);
+          // });
         });
       }
 
-      // let oldMessages = JSON.parse(localStorage.getItem('messages')) ?? [];
-      // console.log(oldMessages);
+      let oldMessages = JSON.parse(localStorage.getItem('messages')) ?? [];
+      console.log(oldMessages);
 
-      function deleteMessage(deleteId) {
-        const updatedMessages = oldMessages.filter(({ id }) => id != deleteId);
-        console.log(updatedMessages);
-        localStorage.setItem('messages', JSON.stringify(updatedMessages));
-        location.reload();
+      // function deleteMessage(deleteId) {
+      //   const updatedMessages = oldMessages.filter(({ id }) => id != deleteId);
+      //   console.log(updatedMessages);
+      //   localStorage.setItem('messages', JSON.stringify(updatedMessages));
+      //   location.reload();
+      // }
+      var cookies = document.cookie
+        .split(';')
+        .map((cookie) => cookie.split('='))
+        .reduce(
+          (accumulator, [key, value]) => ({
+            ...accumulator,
+            [key.trim()]: decodeURIComponent(value),
+          }),
+          {},
+        );
+      async function remove(id) {
+        const res = await fetch(
+          `my-brand-production-bf0a.up.railway.app/user/contacts/delete/message/${id}`,
+          {
+            method: 'DELETE',
+            headers: {
+              Authentication: `Bearer ${cookies.jwt}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+        const data = await res.json();
+        console.log(data);
       }
     </script>
   </body>

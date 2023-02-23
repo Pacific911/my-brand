@@ -84,7 +84,7 @@
         const contentData = document.createElement('div');
         const paragraph = document.createElement('p');
         const link = document.createElement('a');
-        let button = `<button class='viewBlog' onclick = "BlogFunc(${blog._id})" >Read more</button>`;
+        let button = `<button class='viewBlog' onclick = "BlogFunc (${data.id})" >Read more</button>`;
         link.innerHTML = button;
         img.src = blog.image;
         let Y = document.createTextNode(blog.blogname);

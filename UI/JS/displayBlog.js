@@ -1,13 +1,4 @@
-// let a = localStorage.getItem('users');
 
-// if (a == null){
-//     localStorage.setItem( 'users', JSON.stringify[{id:'none', img:'none', message:'none', name:'none'}])
-//     a = localStorage.getItem('users')
-// }
-// console.log(a);
-// const b = JSON.parse(a);
-
-// for (let i = 0; i < b.length; i++) {
   fetch('https://my-brand-production-bf0a.up.railway.app/api/blog/retrieve/all')
     .then((response) => {
       return response.json();

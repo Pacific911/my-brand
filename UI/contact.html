@@ -1,129 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image/x-icon" href="./img/profile.jfif">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/x-icon" href="./img/profile.jfif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pacific Porto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles/contact.css">
-    <script src="https://smtpjs.com/v3/smtp.js"></script> 
-</head>
-<body>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="styles/contact.css" />
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+  </head>
+  <body>
     <!------------ navigation --------->
     <section class="header">
-        <nav>
-            <a href="/index.html"><img src="./img/profile.jfif"></a>
-            <div class="nav-links" id="navLinks">
-                <i class="fa fa-times" onclick="hideMenu()"></i>
-                <ul>
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="skills.html">SKILLS</a></li>
-                    <li><a href="blog.html">BLOG</a></li>
-                    <li><a href="contact.html">CONTACTS</a></li>
-                    <li><a href="login.html">ACCOUNTS</a></li>
-                </ul> 
-            </div>
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-        </nav>
-        <div class="contact">
-            <div class="content">
-                <h2>Contact Us</h2>
-                <p>Get in touch or shoot me an email directly on nduwumwepacific@gmail.com</p>
-            </div>
-            <div class="container">
-                <div class="contactInfo">
-                    <div class="box">
-                        <div class="icon"><i class="fa fa-map-marker"></i></div>
-                        <div class="text">
-                            <h3>Address</h3>
-                            <p>KG 192 Kimironko Road,<br>Kigali,Gasabo3</p>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="icon"><i class="fa fa-phone "></i></div>
-                        <div class="text">
-                            <h3>Phone</h3>
-                            <p>+250784686643</p>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="icon"><i class="fa fa-envelope-o"></i></div>
-                        <div class="text">
-                            <h3>Email</h3>
-                            <p>nduwumwepacific@gmail.com</p>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="./subscribe.html"><button class="btn-button">Subscribe Here</button></a>
-                    </div>
-                </div>
-
-
-
-                <div class="contactForm">
-                    <form id="form">
-                        <h2>Send Message</h2>
-                        <div class="inputBox">
-                            <input type="text" name="name" id="name" >
-                            <div class="error"></div>
-                            <span>Full Name</span>
-                        </div>
-                        <div class="inputBox">
-                            <input name="email" id ="email" >
-                            <div class="error"></div>
-                            <span>Email</span>
-                        </div>
-                        <div class="inputBox"> 
-                            <input type="text" name="subject" id ="subject" >
-                            <div class="error"></div>
-                            <span>Subject</span>
-                        </div>
-                        <div class="inputBox">
-                            <textarea id="message"></textarea>
-                            <div class="error"></div>
-                            <span>Type your Message....</span>
-                        </div>
-                        <div class="inputBox">
-                            <input type="submit" value="Send">
-                        </div>
-                    </form>
-                </div>
-            </div>
+      <nav>
+        <a href="/index.html"><img src="./img/profile.jfif" /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="skills.html">SKILLS</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="contact.html">CONTACTS</a></li>
+            <li><a href="login.html">ACCOUNTS</a></li>
+          </ul>
         </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      <div class="contact">
+        <div class="content">
+          <h2>Contact Us</h2>
+          <p>
+            Get in touch or shoot me an email directly on
+            nduwumwepacific@gmail.com
+          </p>
+        </div>
+        <div class="container">
+          <div class="contactInfo">
+            <div class="box">
+              <div class="icon"><i class="fa fa-map-marker"></i></div>
+              <div class="text">
+                <h3>Address</h3>
+                <p>KG 192 Kimironko Road,<br />Kigali,Gasabo3</p>
+              </div>
+            </div>
+            <div class="box">
+              <div class="icon"><i class="fa fa-phone"></i></div>
+              <div class="text">
+                <h3>Phone</h3>
+                <p>+250784686643</p>
+              </div>
+            </div>
+            <div class="box">
+              <div class="icon"><i class="fa fa-envelope-o"></i></div>
+              <div class="text">
+                <h3>Email</h3>
+                <p>nduwumwepacific@gmail.com</p>
+              </div>
+            </div>
+            <div>
+              <a href="./subscribe.html"
+                ><button class="btn-button">Subscribe Here</button></a
+              >
+            </div>
+          </div>
 
+          <div class="contactForm">
+            <form id="form">
+              <h2>Send Message</h2>
+              <div class="inputBox">
+                <input type="text" name="name" id="name" />
+                <div class="error"></div>
+                <span>Full Name</span>
+              </div>
+              <div class="inputBox">
+                <input name="email" id="email" />
+                <div class="error"></div>
+                <span>Email</span>
+              </div>
+              <div class="inputBox">
+                <input type="text" name="subject" id="subject" />
+                <div class="error"></div>
+                <span>Subject</span>
+              </div>
+              <div class="inputBox">
+                <textarea id="message"></textarea>
+                <div class="error"></div>
+                <span>Type your Message....</span>
+              </div>
+              <div class="inputBox">
+                <input type="submit" value="Send" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
-
 
     <!------------  footer  -------->
 
     <section class="footer">
-        <div class="icons">
-            <a href="https://twitter.com/Pacificray3"><i class="fa fa-twitter "></i></a>
-            <a href="https://www.linkedin.com/in/nduwumwe-pacific-29438621a/"><i class="fa fa-linkedin"></i></a>
-            <a href="https://github.com/Pacific911"><i class="fa fa-github"></i></a>
-        </div>
-        <p>Made with <i class="fa fa-heart-o"></i> by Pacific Nduwumwe</p>
+      <div class="icons">
+        <a href="https://twitter.com/Pacificray3"
+          ><i class="fa fa-twitter"></i
+        ></a>
+        <a href="https://www.linkedin.com/in/nduwumwe-pacific-29438621a/"
+          ><i class="fa fa-linkedin"></i
+        ></a>
+        <a href="https://github.com/Pacific911"><i class="fa fa-github"></i></a>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Pacific Nduwumwe</p>
     </section>
-        
-    <script src="/JS/contact.js"></script>
-    
-        <!-----------  Javascript for Toggle Menu -------->
-        <script>
-            var navLinks = document.getElementById("navLinks");
-    
-            function showMenu(){
-                navLinks.style.right = "0";
-            }
-            function hideMenu(){
-                navLinks.style.right = "-200px";
-            }
-        </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.3.3/dist/axios.min.js"></script>
+    <script type="module">
+      const form = document.getElementById('form');
+      const { name, email, subject, message } = form;
+      console.log(form);
 
-</body>
+      const oldMessages = JSON.parse(localStorage.getItem('messages')) ?? [];
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        console.log(name.value, email.value, subject.value, message.value);
+
+        const currentMessage = {
+          name: name.value,
+          email: email.value,
+          subject: subject.value,
+          message: message.value,
+        };
+        console.log('done');
+        const response = await axios.post(
+          'https://my-brand-production-bf0a.up.railway.app/user/contacts/sendmessage',
+          {
+            name: name.value,
+            email: email.value,
+            subject: subject.value,
+            message : message.value
+
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+
+        console.log(response);
+        oldMessages.push(currentMessage);
+
+        // validateForm(form) &&
+        //   localStorage.setItem('messages', JSON.stringify(oldMessages));
+        // document.getElementById('form').reset();
+      });
+    </script>
+    <!-- <script src="/UI/JS/contact.js"></script> -->
+
+    <!-----------  Javascript for Toggle Menu -------->
+    <script>
+      var navLinks = document.getElementById('navLinks');
+
+      function showMenu() {
+        navLinks.style.right = '0';
+      }
+      function hideMenu() {
+        navLinks.style.right = '-200px';
+      }
+    </script>
+  </body>
 </html>
-
