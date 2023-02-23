@@ -10,32 +10,28 @@ require('dotenv').config();
 //creating blogs
 
 const createBlog = async (req, res) => {
-  try {
-    const { blogname, image, blogdescription } = req.body;
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      folder: 'blog/blogImage',
-      public_id: `${blogname}_cover`,
-    });
-    const post = await blog.create({
+  const { blogname, image, blogdescription } = req.body;
+  const result = await cloudinary.uploader.upload(req.file.path, {
+    folder: 'blog/blogImage',
+    public_id: `${blogname}_cover`,
+  });
+  await blog .create({
       blogname,
       image: result.url,
       blogdescription,
-    });
-    if (post) {
-      res.status(200).json({
-        code: 200,
-        success: true,
-        message: 'blog created successful',
-        blog: post,
-      });
-    }
-  } catch (error) {
-    console.log({ error: error });
-    res.status(404).json({
-      code: 404,
-      status: error
-    });
-  }
+    })
+    .then((done) => {
+      if (done) {
+        res.status(200).json({
+          code: 200,
+          success: true,
+          message: 'blog created successful',
+          blog: done,
+        });
+      }
+    }).catch ((err) =>{
+      res.json(err)
+    })
 };
 
 //viewing blogs
@@ -111,8 +107,8 @@ const sendMessage = (req, res) => {
         MessageSent: data,
       });
     }
-    if(err){
-      res.json(err)
+    if (err) {
+      res.json(err);
     }
   });
 };

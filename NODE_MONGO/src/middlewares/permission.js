@@ -44,8 +44,7 @@ const adminAction = (req, res, next) => {
             const data = await User.findById(decodedtoken.id);
             if (data) {
               if (res.user.role == 'admin') {
-                // next();
-                res.json('admin')
+                next();
               } else {
                 res
                   .status(400)
