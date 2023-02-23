@@ -52,13 +52,15 @@ const viewBlog = async (req, res) => {
 
 const singleblog = async (req, res) => {
   const id = req.params.id;
-  blog.findOne({ _id: id }, () => {
+  blog.findOne({ _id: id })
+  .then((single) => {
     res.status(200).json({
       code: 200,
-      message: 'single blog',
-    });
-  });
-};
+      message: single,
+  } )
+  })
+}
+
 
 //updating blogs
 
