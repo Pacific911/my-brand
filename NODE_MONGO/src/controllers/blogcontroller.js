@@ -33,6 +33,7 @@ const createBlog = async (req, res) => {
     console.log({ error: error });
     res.status(404).json({
       code: 404,
+      status: error
     });
   }
 };
