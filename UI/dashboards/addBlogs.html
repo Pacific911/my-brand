@@ -81,7 +81,7 @@
                   placeholder="Your name.."
                   required=""
                 />
-                <input type="file" name="blogimage" id="image"/>
+                <input type="file" name="blogimage" id="image" />
                 <br />
                 <label for="lname">Blog Description</label>
                 <textarea
@@ -146,9 +146,9 @@
 
           // loader.style.display = 'block';
           // wait.textContent = 'ADDING ...';
-          // setTimeout(() => {
-          //   loader.style.display = 'none';
-          // }, 2000);
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 2000);
           setTimeout(() => {
             window.location.href = '/UI/dashboards/Dashboard.html';
           }, 2000);
@@ -157,12 +157,46 @@
         }
       });
     </script>
-    <script></script>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios@1.3.3/dist/axios.min.js"></script>-->
 
     <script>
       const BtnDanger = document.getElementById('btn-danger');
+
+      BtnDanger.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const check = window.location.search;
+
+        if (check != '') {
+          let parameter = new URLSearchParams(window.location.search);
+          let id = parameter.get('page');
+          var image = document.getElementById('image');
+          if (id) {
+            if (image.value) {
+              console.log('image');
+              const formData = new FormData();
+              formData.append('blogname', blogname.value);
+              formData.append('blogdescription', blogdescription.value);
+              formData.append('image', image.files[0]);
+              const result = updateBlog(id, formData);
+              result.then((picture) => {
+                console.log(picture);
+              });
+            } else {
+              const formData = {
+                blogname: blogname.value,
+                blogdescription: blogdescription.value,
+              };
+              const result = update(id, formData);
+              result.then((data) => {
+                console.log(data);
+              });
+            }
+          }
+        }
+      });
+
       // const Name = document.querySelector('#name');
       // const photo = document.getElementById('img');
       // const message = document.getElementById('message');
@@ -202,7 +236,6 @@
           );
           const data = await res.json();
 
-
           return data;
         }
         retrieve.then((result) => {
@@ -225,51 +258,44 @@
         });
 
         /* --------------- update blog ---------*/
-        BtnDanger.addEventListener('click', (e) => {
-          e.preventDefault();
-          const check = window.location.search;
-          if (check != '') {
-            let parameter = new URLSearchParams(window.location.search);
-            let id = parameter.get('page');
-            if (id) {
-              if (image.value) {
-                console.log('image');
-                const formData = new FormData();
-                formData.append('blogname', title.value);
-                formData.append('blogdescription', body.value);
-                formData.append('image', image.files[0]);
-                const result = updateBlog(id, formData);
-                console.log(result);
-              } else {
-                const formData = {
-                  title: blogname.value,
-                  body: blogdescription.value,
-                };
-                const result = update(id, formData);
-                result.then((data) => {
-                  console.log(data);
-                });
-              }
-            }
-          }
-        });
-        async function update(id, formData) {
-          console.log(formData);
-          console.log(id);
-          // const res = await fetch(
-          //   `https://my-brand-production-bf0a.up.railway.app/api/blog/update/${id}`,
-          //   {
-          //     method: 'PATCH',
-          //     body: JSON.stringify(formData),
-          //     headers: {
-          //       Authentication: `Bearer ${cookies.jwt}`,
-          //       'Content-Type': 'application/json',
-          //     },
-          //   },
-          // );
-          // const data = await res.json();
-          // return data;
-        }
+      }
+      async function update(id, formData) {
+        console.log(formData);
+        console.log(id);
+        const res = await fetch(
+          `https://my-brand-production-bf0a.up.railway.app/api/blog/update/${id}`,
+          {
+            method: 'PATCH',
+            body: JSON.stringify(formData),
+            headers: {
+              Authentication: `Bearer ${cookies.jwt}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+        const data = await res.json();
+        return data;
+      }
+      async function updateBlog(id, formData) {
+        const res = await fetch(
+          `https://my-brand-production-bf0a.up.railway.app/api/blog/update/${id}`,
+          {
+            method: 'PATCH',
+            body: formData,
+            headers: {
+              Authentication: `Bearer ${cookies.jwt}`,
+              //  'Content-Type': 'multipart/form-data',
+            },
+          },
+        );
+        const data = await res.json();
+        return data;
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 2000);
+        setTimeout(() => {
+          window.location.href = '/UI/dashboards/Dashboard.html';
+        }, 2000);
       }
     </script>
   </body>

@@ -69,25 +69,25 @@ fetch('https://my-brand-production-bf0a.up.railway.app/api/blog/retrieve/all')
   });
 
 
-// function deleteBlog(deleteId) {
-//   const updatedBlogs = oldBlogs.filter(({ id }) => id != deleteId);
-//   console.log(updatedBlogs);
-//   localStorage.setItem('users', JSON.stringify(updatedBlogs));
-//   location.reload();
-// }
+function deleteBlog(deleteId) {
+  const updatedBlogs = oldBlogs.filter(({ id }) => id != deleteId);
+  console.log(updatedBlogs);
+  localStorage.setItem('users', JSON.stringify(updatedBlogs));
+  location.reload();
+}
 
-// const updatedBlogs = JSON.parse(localStorage.getItem('editBlog'));
-// console.log('article:', updatedBlogs);
-// fetch('https://my-brand-production-bf0a.up.railway.app/api/blog/update/{id}')
-//   .then((response) => {
-//     return response.json();
-//   })
-//   .then((response) => {
-//     console.log(response.data);
-//     updatedBlogs = response.data;
-//   });
+const updatedBlogs = JSON.parse(localStorage.getItem('editBlog'));
+console.log('article:', updatedBlogs);
+fetch('https://my-brand-production-bf0a.up.railway.app/api/blog/update/{id}')
+  .then((response) => {
+    return response.json();
+  })
+  .then((response) => {
+    console.log(response.data);
+    updatedBlogs = response.data;
+  });
 
-// function editBlog(id) {
-//   window.location.href = `addBlogs.html?page=${id}`;
-//   console.log(id);
-// }
+function editBlog(id) {
+  window.location.href = `addBlogs.html?page=${id}`;
+  console.log(id);
+}

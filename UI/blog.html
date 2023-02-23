@@ -1,104 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image/x-icon" href="./img/profile.jfif">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/x-icon" href="./img/profile.jfif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pacific Porto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./styles/blog.css">
-</head>
-<body>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./styles/blog.css" />
+  </head>
+  <body>
     <!------------ navigation --------->
     <section class="header">
-        <nav>
-            <a href="/index.html"><img src="./img/profile.jfif"></a>
-            <div class="nav-links" id="navLinks">
-                <i class="fa fa-times" onclick="hideMenu()"></i>
-                <ul>
-                    <li><a href="./about.html">ABOUT</a></li>
-                    <li><a href="./skills.html">SKILLS</a></li>
-                    <li><a href="./resume.html">RESUME</a></li>
-                    <li><a href="./contact.html">CONTACTS</a></li>
-                </ul> 
-            </div>
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-        </nav>
-
-        <div class="Blog">
-            <h1>Blog</h1>
-            <p>Below are the uploaded blogs</p>
-            <a href="./dashboards/Dashboard.html"><button class="button">Upload</button></a>
-            
-            <div class="row">
-               
-            </div> 
+      <nav>
+        <a href="/index.html"><img src="./img/profile.jfif" /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="./about.html">ABOUT</a></li>
+            <li><a href="./skills.html">SKILLS</a></li>
+            <li><a href="./resume.html">RESUME</a></li>
+            <li><a href="./contact.html">CONTACTS</a></li>
+          </ul>
         </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
 
-        <div class="footer-icons">
-            <a href="resume.html" class="hero-btn">Let's continue to my Resume
-            <i class="fa fa-arrow-right"></i></a> 
-            <br>
-   
-            <a href="https://twitter.com/Pacificray3"><i class="fa fa-twitter "></i></a>
-            <a href="https://www.linkedin.com/in/nduwumwe-pacific-29438621a/"><i class="fa fa-linkedin"></i></a>
-            <a href="https://github.com/Pacific911"><i class="fa fa-github"></i></a>
-            <p>Made with <i class="fa fa-heart-o"></i> by Pacific Nduwumwe</p>
-        </div>  
+      <div class="Blog">
+        <h1>Blog</h1>
+        <p>Below are the uploaded blogs</p>
+        <a href="./dashboards/Dashboard.html"
+          ><button class="button">Upload</button></a
+        >
 
+        <div class="row"></div>
+      </div>
+
+      <div class="footer-icons">
+        <a href="resume.html" class="hero-btn"
+          >Let's continue to my Resume <i class="fa fa-arrow-right"></i
+        ></a>
+        <br />
+
+        <a href="https://twitter.com/Pacificray3"
+          ><i class="fa fa-twitter"></i
+        ></a>
+        <a href="https://www.linkedin.com/in/nduwumwe-pacific-29438621a/"
+          ><i class="fa fa-linkedin"></i
+        ></a>
+        <a href="https://github.com/Pacific911"><i class="fa fa-github"></i></a>
+        <p>Made with <i class="fa fa-heart-o"></i> by Pacific Nduwumwe</p>
+      </div>
     </section>
 
-      
-       <!-- <script src="/JS/likebutton.js"></script> -->
+    <!-- <script src="/JS/likebutton.js"></script> -->
 
+    <!-----------  Javascript for Toggle Menu -------->
+    <script>
+      var navLinks = document.getElementById('navLinks');
 
-        <!-----------  Javascript for Toggle Menu -------->
-        <script>
-            var navLinks = document.getElementById("navLinks");
-    
-            function showMenu(){
-                navLinks.style.right = "0";
-            }
-            function hideMenu(){
-                navLinks.style.right = "-200px";
-            }
-        </script>
+      function showMenu() {
+        navLinks.style.right = '0';
+      }
+      function hideMenu() {
+        navLinks.style.right = '-200px';
+      }
+    </script>
 
-         <!-- <script src="/JS/displayBlog.js"></script> -->
+    <!-- <script src="/JS/displayBlog.js"></script> -->
 
-         <script>  fetch('https://my-brand-production-bf0a.up.railway.app/api/blog/retrieve/all')
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-        console.log(data.blogs);
-      data.blogs.forEach((blog) => {
-        const row = document.querySelector('.row');
-        const blog_col = document.createElement('div');
-        blog_col.classList.add('blog-col');
-        const img = document.createElement('img');
-        const contentData = document.createElement('div');
-        const paragraph = document.createElement('p');
-        const link = document.createElement('a');
-        let button = `<button class='viewBlog' onclick = "BlogFunc (${data.id})" >Read more</button>`;
-        link.innerHTML = button;
-        img.src = blog.image;
-        let Y = document.createTextNode(blog.blogname);
-        paragraph.appendChild(Y);
-    
-        contentData.innerHTML = paragraph.outerHTML + link.outerHTML;
-        blog_col.innerHTML = img.outerHTML + contentData.outerHTML;
+    <script>
+      fetch(
+        'https://my-brand-production-bf0a.up.railway.app/api/blog/retrieve/all',
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data.blogs);
+          data.blogs.forEach((blog) => {
+            const row = document.querySelector('.row');
+            const blog_col = document.createElement('div');
+            blog_col.classList.add('blog-col');
+            const img = document.createElement('img');
+            const contentData = document.createElement('div');
+            const paragraph = document.createElement('p');
+            const link = document.createElement('a');
+            let button = `<button class='viewBlog' onclick = "BlogFunc('${blog._id}')" >Read more</button>`;
+            link.innerHTML = button;
+            img.src = blog.image;
+            let Y = document.createTextNode(blog.blogname);
+            paragraph.appendChild(Y);
 
-        row.appendChild(blog_col);
-        function BlogFunc(id) {
-          window.location.href = `../viewBlog.html?page=${id}`;
-        }
-      });
-    });</script>
-</body>
+            contentData.innerHTML = paragraph.outerHTML + link.outerHTML;
+            blog_col.innerHTML = img.outerHTML + contentData.outerHTML;
+
+            row.appendChild(blog_col);
+          });
+        });
+      function BlogFunc(id) {
+        window.location.href = `/UI/viewBlog.html?page=${id}`;
+      }
+    </script>
+  </body>
 </html>
-

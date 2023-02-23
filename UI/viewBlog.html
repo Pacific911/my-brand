@@ -1,184 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image/x-icon" href="/img/profile.jfif">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/x-icon" href="/img/profile.jfif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pacific Porto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles/viewBlog.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    
-</head>
-<body>
-
-
-
-
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="styles/viewBlog.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+  </head>
+  <body>
     <!------------ navigation --------->
     <section class="header">
-        <nav>
-            <a href="index.html"><img src="img/profile.jfif"></a>
-            <div class="nav-links" id="navLinks">
-                <i class="fa fa-times" onclick="hideMenu()"></i>
-                <ul>
-                    <li><a href="blog.html">BLOG</a></li>
-                    <li><a href="skills.html">SKILLS</a></li>
-                    <li><a href="resume.html">RESUME</a></li>
-                    <li><a href="contact.html">CONTACTS</a></li>
-                </ul> 
-            </div>
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-        </nav>
-
-        <div class="view-Blog">
-            <h1> View Blog</h1>
-            <h2 id="title">Software Engineering</h2>
-            <img src="#" id="profile">
-            <p id="description">#></p>
-
-            <button class="like-btn">
-                <span id="icon"><i class="far fa-thumbs-up"></i></span>
-                <span id="count">0</span> like
-            </button>
+      <nav>
+        <a href="/index.html"><img src="img/profile.jfif" /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="skills.html">SKILLS</a></li>
+            <li><a href="resume.html">RESUME</a></li>
+            <li><a href="contact.html">CONTACTS</a></li>
+          </ul>
         </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
 
-        <div class="input-comment">
-            <h1 style="color: #fff; text-align: center;">Add Comments</h1>
-          <textarea name="" id="comment" cols="30" rows="5" placeholder="place your comment "></textarea>
-          <br>
-          <input type="submit" id="btn" value="Submit">
-        </div>
-        
-        <div class="comment-section">
-            
-        </div>
+      <div class="view-Blog">
+        <h1>View Blog</h1>
+        <h2 id="title"></h2>
+        <img src="#" id="profile" />
+        <p id="description">#></p>
 
-        <div class="footer-icons">
-            <a href="blog.html" class="hero-btn">Let's continue to my blog
-            <i class="fa fa-arrow-right"></i></a> 
-            <br>
-   
-            <a href="https://twitter.com/Pacificray3"><i class="fa fa-twitter "></i></a>
-            <a href="https://www.linkedin.com/in/nduwumwe-pacific-29438621a/"><i class="fa fa-linkedin"></i></a>
-            <a href="https://github.com/Pacific911"><i class="fa fa-github"></i></a>
-            <p>Made with <i class="fa fa-heart-o"></i> by Pacific Nduwumwe</p>
-        </div>  
-        
+        <button class="like-btn">
+          <span id="icon"><i class="far fa-thumbs-up"></i></span>
+          <span id="count">0</span> like
+        </button>
+      </div>
+
+      <div class="input-comment">
+        <h1 style="color: #fff; text-align: center">Add Comments</h1>
+        <textarea
+          name=""
+          id="comment"
+          cols="30"
+          rows="5"
+          placeholder="place your comment "
+        ></textarea>
+        <br />
+        <input type="submit" id="btn" value="Submit" />
+      </div>
+
+      <div class="comment-section"></div>
+
+      <div class="footer-icons">
+        <a href="blog.html" class="hero-btn"
+          >Let's continue to my blog <i class="fa fa-arrow-right"></i
+        ></a>
+        <br />
+
+        <a href="https://twitter.com/Pacificray3"
+          ><i class="fa fa-twitter"></i
+        ></a>
+        <a href="https://www.linkedin.com/in/nduwumwe-pacific-29438621a/"
+          ><i class="fa fa-linkedin"></i
+        ></a>
+        <a href="https://github.com/Pacific911"><i class="fa fa-github"></i></a>
+        <p>Made with <i class="fa fa-heart-o"></i> by Pacific Nduwumwe</p>
+      </div>
     </section>
-        
-        <!-----------  Javascript for Toggle Menu -------->
-        <script>
-            var navLinks = document.getElementById("navLinks");
-    
-            function showMenu(){
-                navLinks.style.right = "0";
-            }
-            function hideMenu(){
-                navLinks.style.right = "-200px";
-            }
-          
-            let parameter= new URLSearchParams(window.location.search)
-            let id = parameter.get("page")
-            console.log(id);
-            
-            const Title = document.getElementById('title');
-            const Profile = document.getElementById('profile');
-            const Description = document.getElementById('description');
 
-            let a = localStorage.getItem('users');
-            const b = JSON.parse(a)
-            const retrieve = b.filter(Data => b.indexOf(Data) == id);
-            console.log(retrieve);
+    <!-----------  Javascript for Toggle Menu -------->
+    <script>
+      var navLinks = document.getElementById('navLinks');
 
-                description.textContent = retrieve[0].message
-                title.textContent = retrieve[0].name
-                profile.src = retrieve[0].img
+      function showMenu() {
+        navLinks.style.right = '0';
+      }
+      function hideMenu() {
+        navLinks.style.right = '-200px';
+      }
+
+      let parameter = new URLSearchParams(window.location.search);
+      let id = parameter.get('page');
+      console.log(id);
+
+      const retrieve = getblog();
+
+      async function getblog() {
+        var cookies = document.cookie
+          .split(';')
+          .map((cookie) => cookie.split('='))
+          .reduce(
+            (accumulator, [key, value]) => ({
+              ...accumulator,
+              [key.trim()]: decodeURIComponent(value),
+            }),
+            {},
+          );
+        const res = await fetch(
+          `https://my-brand-production-bf0a.up.railway.app/api/blog/retrieve/single/${id}`,
+          {
+            method: 'GET',
+            headers: {
+              Authentication: `Bearer ${cookies.jwt}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+        const data = await res.json();
+
+        return data;
+      }
+      retrieve.then((view) => {
+        console.log(view);
+        const Title = document.getElementById('title');
+        console.log(Title);
+        const Profile = document.getElementById('profile');
+        const Description = document.getElementById('description');
+
+        description.textContent = view.message.blogdescription;
+        title.textContent = view.message.blogname;
+        profile.src = view.message.image;
+      });
+
+      /*------------ comment blog ------*/
+
+      //   const Name = document.getElementById('name');
+      const commentSection = document.getElementById('comment');
+      const Btn = document.getElementById('btn');
+
+      async function newComment(id, commentData) {
+        const res = await fetch(
+          `https://my-brand-production-bf0a.up.railway.app/blog/comments/send/${id}`,
+          {
+            method: 'POST',
+            body: JSON.stringify(commentData),
+            headers: {
+              Authentication: `Bearer ${cookies.jwt}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+        const data = await res.json();
+        return data;
+      }
+
+      Btn.addEventListener('click', (e) => {
+        console.log('none');
+
+        var z = localStorage.getItem('Comments');
+        if (z == null) {
+          localStorage.setItem(
+            'Comments',
+            JSON.stringify([{ blogId: 'none', name: 'none', comment: 'none' }]),
+          );
+          z = localStorage.getItem('Comments');
+        }
+        const b = JSON.parse(z);
+
+        let userComment = localStorage.getItem('Active');
+        const x = JSON.parse(userComment);
+
+        b.push({
+          blogId: id,
+          name: x[0].activeuser,
+          comment: commentSection.value,
+        });
+        localStorage.setItem('Comments', JSON.stringify(b));
+        window.location.reload();
+      });
+
+      let p = localStorage.getItem('Comments');
+      if (p == null) {
+        localStorage.setItem(
+          'Comments',
+          JSON.stringify([{ blogId: 'none', name: 'none', comment: 'none' }]),
+        );
+        p = localStorage.getItem('Comments');
+      }
+      const w = JSON.parse(p);
+      for (let i = 1; i < w.length; i++) {
+        const Box = document.querySelector('.comment-section');
+        const Store = document.createElement('div');
+        Store.classList.add('boxList');
+        const pName = document.createElement('p');
+        pName.classList.add('userTitle');
+        const pComment = document.createElement('p');
+        pComment.classList.add('commentTitle');
+
+        const text1 = document.createTextNode(w[i].name);
+        const text2 = document.createTextNode(w[i].comment);
+
+        pName.appendChild(text1);
+        pComment.appendChild(text2);
+        Store.innerHTML = pName.outerHTML + pComment.outerHTML;
+        Box.appendChild(Store);
+      }
 
 
-        /*------------ comment blog ------*/  
+      /*--------------------------------- like the blog ------------------------*/
+      const likeBtn = document.querySelector('.like-btn');
+      let likeIcon = document.querySelector('#icon');
+      let count = document.querySelector('#count');
 
-        const Name = document.getElementById('name');
-        const commentSection = document.getElementById('comment');
-        const Btn = document.getElementById('btn');
+      //button clicked
+      let clicked = false;
 
-        Btn.addEventListener('click', (e) => {
-            console.log('none');
-            // if(name.trim() == '' ||  comment.trim() == '' || name == null || comment == null){
-
-            // } else{
-
-            // }
-
-            var z = localStorage.getItem('Comments');
-                if( z == null){
-                    localStorage.setItem('Comments', JSON.stringify([{blogId: 'none', name:'none', comment:'none'}]))
-                    z = localStorage.getItem('Comments');
-                }
-                const b = JSON.parse(z)
-
-                let userComment = localStorage.getItem('Active')
-                const x = JSON.parse(userComment);
-
-                b.push({blogId:id, name:x[0].activeuser, comment:commentSection.value})
-                localStorage.setItem("Comments", JSON.stringify(b));
-                window.location.reload();
-      
-        })
-
-            let p = localStorage.getItem('Comments');
-                if( p == null){
-                    localStorage.setItem('Comments', JSON.stringify([{blogId: 'none', name:'none', comment:'none'}]))
-                    p = localStorage.getItem('Comments');
-                }
-                const w = JSON.parse(p)
-                for(let i=1; i<w.length; i++){
-                    const Box = document.querySelector('.comment-section');
-                    const Store = document.createElement('div');
-                    Store.classList.add('boxList');
-                    const pName = document.createElement('p');
-                    pName.classList.add('userTitle');
-                    const pComment = document.createElement('p');
-                    pComment.classList.add('commentTitle');
-
-
-
-                    const text1 = document.createTextNode(w[i].name);
-                    const text2 = document.createTextNode(w[i].comment);
-                    
-    
-                    pName.appendChild(text1);
-                    pComment.appendChild(text2);
-                    Store.innerHTML=pName.outerHTML+pComment.outerHTML
-                    Box.appendChild(Store)
-                }
-
-
-            /*---------- like the blog -----------*/
-            const likeBtn = document.querySelector(".like-btn");
-            let likeIcon = document.querySelector("#icon");
-            let count = document.querySelector("#count");
-
-            //button clicked
-            let clicked = false;
-
-            likeBtn.addEventListener("click", () => {
-                if (!clicked) {
-                    clicked = true;
-                    likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
-                    count.textContent++;
-                }else{
-                    clicked = false;
-                    likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
-                    count.textContent--;
-                }
-            });
-
-        </script>
-</body>
+      likeBtn.addEventListener('click', () => {
+        if (!clicked) {
+          clicked = true;
+          likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+          count.textContent++;
+        } else {
+          clicked = false;
+          likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+          count.textContent--;
+        }
+      });
+    </script>
+  </body>
 </html>
-
