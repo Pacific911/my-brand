@@ -16,21 +16,25 @@ const createBlog = async (req, res) => {
     folder: 'blog/blogImage',
     public_id: `${blogname}_cover`,
   });
-  await blog .create({
+  await blog
+    .create({
       blogname,
       image: result.url,
       blogdescription,
     })
     .then((done) => {
-        res.status(200).json({
-          code: 200,
-          success: true,
-          message: 'blog created successful',
-          blog: done,
-        });
-    }).catch ((err) =>{
-      res.json(err)
+      res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
+      res.status(200).json({
+        code: 200,
+        success: true,
+        message: 'blog created successful',
+        blog: done,
+      });
     })
+    .catch((err) => {
+      res.json(err);
+    });
 };
 
 //viewing blogs
