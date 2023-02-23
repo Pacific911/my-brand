@@ -10,17 +10,15 @@ require('dotenv').config();
 //creating blogs
 
 const createBlog = async (req, res) => {
-  // res.json(req.body)
   const { blogname, image, blogdescription } = req.body;
   const result = await cloudinary.uploader.upload(req.file.path, {
     folder: 'blog/blogImage',
     public_id: `${blogname}_cover`,
   });
-  await blog
-    .create({
-      blogname,
+  await blog.create({
+      blogname:blogname,
       image: result.url,
-      blogdescription,
+      blogdescription:blogdescription
     })
     .then((done) => {
       res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
