@@ -15,10 +15,11 @@ const createBlog = async (req, res) => {
     folder: 'blog/blogImage',
     public_id: `${blogname}_cover`,
   });
-  await blog.create({
-      blogname:blogname,
+  await blog
+    .create({
+      blogname: blogname,
       image: result.url,
-      blogdescription:blogdescription
+      blogdescription: blogdescription,
     })
     .then((done) => {
       res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
@@ -52,15 +53,13 @@ const viewBlog = async (req, res) => {
 
 const singleblog = async (req, res) => {
   const id = req.params.id;
-  blog.findOne({ _id: id })
-  .then((single) => {
+  blog.findOne({ _id: id }).then((single) => {
     res.status(200).json({
       code: 200,
       message: single,
-  } )
-  })
-}
-
+    });
+  });
+};
 
 //updating blogs
 
@@ -213,6 +212,16 @@ const register = async (req, res, Msg) => {
     }
   }
 };
+//get user
+const getuser = async (req, res) => {
+  const id = req.params.id;
+  user.findOne({ _id: id }).then((single) => {
+    res.status(200).json({
+      code: 200,
+      message: single,
+    });
+  });
+};
 
 //delete user
 
@@ -258,5 +267,6 @@ module.exports = {
   login,
   logout,
   deleteUser,
+  getuser,
   sendComments,
 };
