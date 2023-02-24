@@ -230,8 +230,8 @@ const uploads = multer({ storage, fileFilter });
 /**
  * @swagger
  * /user/auth/get/{id}:
- *  patch:
- *      summary: this API is used to update a blog
+ *  get:
+ *      summary: this API is used to get one user
  *      tags: [Users]
  *      parameters:
  *          - in: path
@@ -242,13 +242,9 @@ const uploads = multer({ storage, fileFilter });
  *              multipart/form-data:
  *                  schema:
  *                      type: object
- *                      properties:
- *                          name:
- *                              type: string
- *                              description: name
  *      responses:
  *          200:
- *              description: Retrieved one blog
+ *              description: Retrieve one blog
  *              content:
  *                  application/json:
  *                      schema:
