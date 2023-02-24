@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Pacific Porto</title>
-    <link rel="stylesheet" href="/UI/styles/addBlogs.css" />
+    <link rel="stylesheet" href="../styles/addBlogs.css" />
 
     <!-- Font Awesome Cdn Link -->
     <link
@@ -28,7 +28,7 @@
           <li>
             <a href="../blog.html" class="logo">
               <img src="../img/profile.jfif" />
-              <span class="nav-item">Admin</span>
+              <span class="nav-item">admin</span>
             </a>
           </li>
           <li>
@@ -49,18 +49,18 @@
               <span class="nav-item">Add Blogs</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="#">
               <i class="fa fa-cogs"></i>
               <span class="nav-item">Settings</span>
             </a>
-          </li>
+          </li> -->
 
           <li>
-            <a href="/UI//login.html" class="logout">
+            <button class="logout" onclick="localStorage.removeItem('token')">
               <i class="fa fa-sign-out"></i>
               <span class="nav-item">Log out</span>
-            </a>
+            </button>
           </li>
         </ul>
       </nav>

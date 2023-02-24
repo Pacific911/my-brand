@@ -75,6 +75,8 @@ a:hover i{
 .logout{
   position: absolute;
   bottom: 10%;
+  width: 100%;
+  height: 15vh;
 }
 .container{
   display: flex;

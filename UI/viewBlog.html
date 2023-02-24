@@ -139,77 +139,156 @@
 
       /*------------ comment blog ------*/
 
-      //   const Name = document.getElementById('name');
-      const commentSection = document.getElementById('comment');
-      const Btn = document.getElementById('btn');
+      async function displayComments(id) {
+        com = document.getElementById('com');
 
-      async function newComment(id, commentData) {
-        const res = await fetch(
-          `https://my-brand-production-bf0a.up.railway.app/blog/comments/send/${id}`,
-          {
-            method: 'POST',
-            body: JSON.stringify(commentData),
-            headers: {
-              Authentication: `Bearer ${cookies.jwt}`,
-              'Content-Type': 'application/json',
-            },
-          },
-        );
-        const data = await res.json();
-        return data;
-      }
-
-      Btn.addEventListener('click', (e) => {
-        console.log('none');
-
-        var z = localStorage.getItem('Comments');
-        if (z == null) {
-          localStorage.setItem(
-            'Comments',
-            JSON.stringify([{ blogId: 'none', name: 'none', comment: 'none' }]),
-          );
-          z = localStorage.getItem('Comments');
+        const url = `https://my-brand-production-bf0a.up.railway.app/blog/comments/send/${id}`;
+        const data = await fetch(url);
+        var comment = await data.json();
+        var comments = comment.Comments;
+        let output =
+          ' <div class="comment-section">' +
+          ' <div class="com-name"> ' +
+          '</div> ' +
+          ' <div class="com-content"> ' +
+          '</div> ' +
+          '<div class="com-date">24/02/2023</div>' +
+          ' </div>';
+        if (comments.length < 1) {
+          output = 'No Comments';
+        } else {
         }
-        const b = JSON.parse(z);
-
-        let userComment = localStorage.getItem('Active');
-        const x = JSON.parse(userComment);
-
-        b.push({
-          blogId: id,
-          name: x[0].activeuser,
-          comment: commentSection.value,
-        });
-        localStorage.setItem('Comments', JSON.stringify(b));
-        window.location.reload();
-      });
-
-      let p = localStorage.getItem('Comments');
-      if (p == null) {
-        localStorage.setItem(
-          'Comments',
-          JSON.stringify([{ blogId: 'none', name: 'none', comment: 'none' }]),
-        );
-        p = localStorage.getItem('Comments');
+        for (let i = 0; i < comments.length; i++) {
+          const userUrl = `https://my-brand-production-bf0a.up.railway.app/blog/comments/send${comments[i]._userId}`;
+          const userdata = await fetch(userUrl);
+          var userdetails = await userdata.json();
+          var user = userdetails.data;
+          if (user.imageUrl == '') {
+            user.imageUrl = '/UI/img/coder.jpg';
+          }
+          output +=
+            ' <div class="comment-section">' +
+            ' <div class="com-name"> ' +
+            '<img src=' +
+            user.imageUrl +
+            ' alt="image ">' +
+            user.username +
+            '</div> ' +
+            ' <div class="com-content"> ' +
+            comments[i].comment +
+            '</div> ' +
+            '<div class="com-date">' +
+            '' +
+            '</div> </div>';
+        }
+        com.innerHTML = output;
       }
-      const w = JSON.parse(p);
-      for (let i = 1; i < w.length; i++) {
-        const Box = document.querySelector('.comment-section');
-        const Store = document.createElement('div');
-        Store.classList.add('boxList');
-        const pName = document.createElement('p');
-        pName.classList.add('userTitle');
-        const pComment = document.createElement('p');
-        pComment.classList.add('commentTitle');
 
-        const text1 = document.createTextNode(w[i].name);
-        const text2 = document.createTextNode(w[i].comment);
-
-        pName.appendChild(text1);
-        pComment.appendChild(text2);
-        Store.innerHTML = pName.outerHTML + pComment.outerHTML;
-        Box.appendChild(Store);
+      async function addComment(id) {
+        if (loggedUser) {
+          const comment = document.getElementById('ccontent').value;
+          const token = localStorage.getItem('cooltoken');
+          if (comment == '') {
+            popContact('Please Fillout', 'red');
+          } else {
+            const tempComment = {
+              comment: comment,
+            };
+            const rawResponse = await fetch(
+              `https://my-brand-production-bf0a.up.railway.app/blog/comments/send${id}`,
+              {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(tempComment),
+              },
+            );
+            const response = await rawResponse.json();
+            if (response.Error) {
+              popContact(response.Error, 'red');
+            } else if (response.message) {
+              location.reload();
+            }
+          }
+        } else {
+          location.href = './login.html';
+        }
       }
+
+      // //   const Name = document.getElementById('name');
+      // const commentSection = document.getElementById('comment');
+      // const Btn = document.getElementById('btn');
+
+      // async function newComment(id, commentData) {
+      //   const res = await fetch(
+      //     `https://my-brand-production-bf0a.up.railway.app/blog/comments/send/${id}`,
+      //     {
+      //       method: 'POST',
+      //       body: JSON.stringify(commentData),
+      //       headers: {
+      //         Authentication: `Bearer ${cookies.jwt}`,
+      //         'Content-Type': 'application/json',
+      //       },
+      //     },
+      //   );
+      //   const data = await res.json();
+      //   return data;
+      // }
+
+      // Btn.addEventListener('click', (e) => {
+      //   console.log('none');
+
+      //   var z = localStorage.getItem('Comments');
+      //   if (z == null) {
+      //     localStorage.setItem(
+      //       'Comments',
+      //       JSON.stringify([{ blogId: 'none', name: 'none', comment: 'none' }]),
+      //     );
+      //     z = localStorage.getItem('Comments');
+      //   }
+      //   const b = JSON.parse(z);
+
+      //   let userComment = localStorage.getItem('Active');
+      //   const x = JSON.parse(userComment);
+
+      //   b.push({
+      //     blogId: id,
+      //     name: x[0].activeuser,
+      //     comment: commentSection.value,
+      //   });
+      //   localStorage.setItem('Comments', JSON.stringify(b));
+      //   window.location.reload();
+      // });
+
+      // let p = localStorage.getItem('Comments');
+      // if (p == null) {
+      //   localStorage.setItem(
+      //     'Comments',
+      //     JSON.stringify([{ blogId: 'none', name: 'none', comment: 'none' }]),
+      //   );
+      //   p = localStorage.getItem('Comments');
+      // }
+      // const w = JSON.parse(p);
+      // for (let i = 1; i < w.length; i++) {
+      //   const Box = document.querySelector('.comment-section');
+      //   const Store = document.createElement('div');
+      //   Store.classList.add('boxList');
+      //   const pName = document.createElement('p');
+      //   pName.classList.add('userTitle');
+      //   const pComment = document.createElement('p');
+      //   pComment.classList.add('commentTitle');
+
+      //   const text1 = document.createTextNode(w[i].name);
+      //   const text2 = document.createTextNode(w[i].comment);
+
+      //   pName.appendChild(text1);
+      //   pComment.appendChild(text2);
+      //   Store.innerHTML = pName.outerHTML + pComment.outerHTML;
+      //   Box.appendChild(Store);
+      // }
 
       /*--------------------------------- like the blog ------------------------*/
       const likeBtn = document.querySelector('.like-btn');
