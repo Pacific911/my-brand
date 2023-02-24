@@ -53,18 +53,20 @@
 
       <div class="input-comment">
         <h1 style="color: #fff; text-align: center">Add Comments</h1>
-        <textarea
-          name=""
-          id="comment"
-          cols="30"
-          rows="5"
-          placeholder="place your comment "
-        ></textarea>
-        <br />
-        <input type="submit" id="btn" value="Submit" />
+        <form action="" onsubmit="event.preventDefault(); AddComment()">
+          <textarea
+            name=""
+            id="comment"
+            cols="30"
+            rows="5"
+            placeholder="place your comment "
+          ></textarea>
+          <br />
+          <button style="background-color: #fff;color: #000;width: 10%;height: 5vh;border-radius: 3px;font-size: 8x;">Send</button>
+        </form>
       </div>
 
-      <div class="comment-section"></div>
+      <div class="comment-section" id="commentHolder"></div>
 
       <div class="footer-icons">
         <a href="blog.html" class="hero-btn"
@@ -84,6 +86,79 @@
     </section>
 
     <!-----------  Javascript for Toggle Menu -------->
+    <script>
+      /*------------ comment on blog ------*/
+
+      const token = JSON.parse(localStorage.getItem('token'));
+      const userId = JSON.parse(localStorage.getItem('loggedUser')).id;
+      let par = new URLSearchParams(window.location.search);
+      let blogid = par.get('page');
+      getcomment();
+      async function getcomment() {
+        const response = await fetch(
+          `https://my-brand-production-bf0a.up.railway.app/blog/comments/get/all`,
+          {
+            method: 'GET',
+            headers: {
+              Authentication: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+        const data = await response.json();
+        const comments = data.comment;
+
+        // data.then((retrieveComment) => {
+        //   console.log(retrieveComment.comment);
+        // });
+
+        const file = comments.filter((item) => {
+          return item.blogId == blogid;
+        });
+        console.log(file);
+        const commentHolder = document.getElementById('commentHolder');
+        for (let i = 0; i < file.length; i++) {
+          const Store = document.createElement('div');
+          Store.classList.add('boxList');
+          const pName = document.createElement('p');
+          pName.classList.add('userTitle');
+          const pComment = document.createElement('p');
+          pComment.classList.add('commentTitle');
+
+          const text1 = document.createTextNode(file[i].name);
+          const text2 = document.createTextNode(file[i].comment);
+
+          pName.appendChild(text1);
+          pComment.appendChild(text2);
+          Store.innerHTML = pName.outerHTML + pComment.outerHTML;
+          commentHolder.appendChild(Store);
+        }
+      }
+      async function AddComment() {
+        const commentInput = document.getElementById('comment');
+
+        const commentData = {
+          comment: comment,
+        };
+        const response = await fetch(
+          `https://my-brand-production-bf0a.up.railway.app/blog/comments/send/${blogid}`,
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              Authentication: `Bearer ${token}`,
+            },
+            body: JSON.stringify(commentData),
+          },
+        );
+        const data = await response.json();
+        // console.log(data);
+        console.log(data);
+        console.log(token);
+      }
+    </script>
+
     <script>
       var navLinks = document.getElementById('navLinks');
 
@@ -137,158 +212,33 @@
         profile.src = view.message.image;
       });
 
-      /*------------ comment blog ------*/
-
-      async function displayComments(id) {
-        com = document.getElementById('com');
-
-        const url = `https://my-brand-production-bf0a.up.railway.app/blog/comments/send/${id}`;
-        const data = await fetch(url);
-        var comment = await data.json();
-        var comments = comment.Comments;
-        let output =
-          ' <div class="comment-section">' +
-          ' <div class="com-name"> ' +
-          '</div> ' +
-          ' <div class="com-content"> ' +
-          '</div> ' +
-          '<div class="com-date">24/02/2023</div>' +
-          ' </div>';
-        if (comments.length < 1) {
-          output = 'No Comments';
-        } else {
-        }
-        for (let i = 0; i < comments.length; i++) {
-          const userUrl = `https://my-brand-production-bf0a.up.railway.app/blog/comments/send${comments[i]._userId}`;
-          const userdata = await fetch(userUrl);
-          var userdetails = await userdata.json();
-          var user = userdetails.data;
-          if (user.imageUrl == '') {
-            user.imageUrl = '/UI/img/coder.jpg';
-          }
-          output +=
-            ' <div class="comment-section">' +
-            ' <div class="com-name"> ' +
-            '<img src=' +
-            user.imageUrl +
-            ' alt="image ">' +
-            user.username +
-            '</div> ' +
-            ' <div class="com-content"> ' +
-            comments[i].comment +
-            '</div> ' +
-            '<div class="com-date">' +
-            '' +
-            '</div> </div>';
-        }
-        com.innerHTML = output;
-      }
-
-      async function addComment(id) {
-        if (loggedUser) {
-          const comment = document.getElementById('ccontent').value;
-          const token = localStorage.getItem('cooltoken');
-          if (comment == '') {
-            popContact('Please Fillout', 'red');
-          } else {
-            const tempComment = {
-              comment: comment,
-            };
-            const rawResponse = await fetch(
-              `https://my-brand-production-bf0a.up.railway.app/blog/comments/send${id}`,
-              {
-                method: 'POST',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(tempComment),
-              },
-            );
-            const response = await rawResponse.json();
-            if (response.Error) {
-              popContact(response.Error, 'red');
-            } else if (response.message) {
-              location.reload();
-            }
-          }
-        } else {
-          location.href = './login.html';
-        }
-      }
-
-      // //   const Name = document.getElementById('name');
+      //   const Name = document.getElementById('name');
       // const commentSection = document.getElementById('comment');
-      // const Btn = document.getElementById('btn');
 
-      // async function newComment(id, commentData) {
-      //   const res = await fetch(
-      //     `https://my-brand-production-bf0a.up.railway.app/blog/comments/send/${id}`,
-      //     {
-      //       method: 'POST',
-      //       body: JSON.stringify(commentData),
-      //       headers: {
-      //         Authentication: `Bearer ${cookies.jwt}`,
-      //         'Content-Type': 'application/json',
-      //       },
-      //     },
-      //   );
-      //   const data = await res.json();
-      //   return data;
-      // }
+      const Btn = document.getElementById('btn');
+      const commentArea = document.getElementById('comment');
 
-      // Btn.addEventListener('click', (e) => {
-      //   console.log('none');
+      Btn.addEventListener('click', async (e) => {
+        e.preventDefault();
 
-      //   var z = localStorage.getItem('Comments');
-      //   if (z == null) {
-      //     localStorage.setItem(
-      //       'Comments',
-      //       JSON.stringify([{ blogId: 'none', name: 'none', comment: 'none' }]),
-      //     );
-      //     z = localStorage.getItem('Comments');
-      //   }
-      //   const b = JSON.parse(z);
+        commentData = {
+          comment: commentArea.value,
+        };
+        console.log(commentData);
 
-      //   let userComment = localStorage.getItem('Active');
-      //   const x = JSON.parse(userComment);
+        // window.location.reload();
+      });
 
-      //   b.push({
-      //     blogId: id,
-      //     name: x[0].activeuser,
-      //     comment: commentSection.value,
-      //   });
-      //   localStorage.setItem('Comments', JSON.stringify(b));
-      //   window.location.reload();
-      // });
-
-      // let p = localStorage.getItem('Comments');
-      // if (p == null) {
-      //   localStorage.setItem(
-      //     'Comments',
-      //     JSON.stringify([{ blogId: 'none', name: 'none', comment: 'none' }]),
-      //   );
-      //   p = localStorage.getItem('Comments');
-      // }
-      // const w = JSON.parse(p);
-      // for (let i = 1; i < w.length; i++) {
-      //   const Box = document.querySelector('.comment-section');
-      //   const Store = document.createElement('div');
-      //   Store.classList.add('boxList');
-      //   const pName = document.createElement('p');
-      //   pName.classList.add('userTitle');
-      //   const pComment = document.createElement('p');
-      //   pComment.classList.add('commentTitle');
-
-      //   const text1 = document.createTextNode(w[i].name);
-      //   const text2 = document.createTextNode(w[i].comment);
-
-      //   pName.appendChild(text1);
-      //   pComment.appendChild(text2);
-      //   Store.innerHTML = pName.outerHTML + pComment.outerHTML;
-      //   Box.appendChild(Store);
-      // }
+      var cookies = document.cookie
+        .split(';')
+        .map((cookie) => cookie.split('='))
+        .reduce(
+          (accumulator, [key, value]) => ({
+            ...accumulator,
+            [key.trim()]: decodeURIComponent(value),
+          }),
+          {},
+        );
 
       /*--------------------------------- like the blog ------------------------*/
       const likeBtn = document.querySelector('.like-btn');
