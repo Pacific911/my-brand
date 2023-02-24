@@ -254,6 +254,18 @@ const sendComments = (req, res) => {
     });
 };
 
+//get comment
+const getComment = async (req, res) => {
+  await Comment.find().then((data) => {
+    res.status(200).json({
+      code: 200,
+      success: true,
+      message: 'all comments',
+      comment: data,
+    });
+  });
+};
+
 module.exports = {
   createBlog,
   viewBlog,
@@ -269,4 +281,5 @@ module.exports = {
   deleteUser,
   getuser,
   sendComments,
+  getComment,
 };

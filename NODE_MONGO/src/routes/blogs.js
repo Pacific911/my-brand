@@ -15,6 +15,7 @@ const {
   deleteUser,
   getuser,
   sendComments,
+  getComment,
   logout,
 } = require('../controllers/blogcontroller');
 const { verification } = require('../middlewares/auth');
@@ -391,5 +392,6 @@ blogroute.delete('/user/contacts/delete/message/:id', verification, permission, 
 blogroute.get('/user/retrieve/message/all', retrieveMessages);
 
 blogroute.post('/blog/comments/send/:id', verification, sendComments);
+blogroute.get('/blog/comments/get/all', verification, getComment);
 
 module.exports = blogroute;

@@ -119,6 +119,13 @@ describe('Testing all Apis', () => {
                 });
               await chai
                 .request(server)
+                .get(`/user/auth/get/${userid}`)
+                .set('Cookie', `jwt=${token}`)
+                .then((res) => {
+                  res.should.have.status(200);
+                });
+              await chai
+                .request(server)
                 .delete(`/user/auth/delete/${userid}`)
                 .set('Cookie', `jwt=${token}`)
                 .then((res) => {
