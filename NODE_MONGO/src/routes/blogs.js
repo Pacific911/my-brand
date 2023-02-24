@@ -384,7 +384,7 @@ blogroute.post('/user/auth/register', register);
 blogroute.post('/user/auth/login', login);
 blogroute.get('/user/auth/logout', logout);
 blogroute.delete('/user/auth/delete/:id', verification, permission, deleteUser);
-blogroute.get('/user/auth/get/:id', verification, permission, getuser);
+blogroute.get('/user/auth/get/:id', getuser);
 
 blogroute.post('/user/contacts/sendmessage', sendMessage);
 blogroute.delete('/user/contacts/delete/message/:id', verification, permission, deleteMessage);
