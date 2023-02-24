@@ -244,10 +244,11 @@ const deleteUser = (req, res) => {
 
 //send comment
 const sendComments = (req, res) => {
+  const id = req.params.id;
   const comment = {
     comment: req.body.comment,
   };
-  Comment.create({ name: res.locals.user.name, comment: req.body.comment }),
+  Comment.create({ blogId:id, name: res.locals.user.name, comment: req.body.comment }),
     res.status(200).json({
       code: 200,
       message: 'Comment sent',
