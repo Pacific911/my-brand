@@ -147,6 +147,17 @@ const uploads = multer({ storage, fileFilter });
  *               items:
  *                 $ref: '#components/schema/Comment'
  */
+/**
+ * @swagger
+ * /blog/comments/get/all:
+ *  get:
+ *      summary: this API gets all the comments
+ *      tags: [Comments]
+ *
+ *      responses:
+ *          200:
+ *              description: Retrieved all comments
+ */
 
 /**
  * @swagger
