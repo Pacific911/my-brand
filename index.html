@@ -16,7 +16,7 @@
     <!------------ navigation --------->
     <section class="header">
         <nav>
-            <a href="/index.html"><img src="/UI/img/profile.jfif"></a>
+            <a href="/index.html"><img src="/UI/img/profile.jpg"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
@@ -25,7 +25,7 @@
                     <li><a href="./UI/blog.html">BLOG</a></li>
                     <li><a href="./UI/contact.html">CONTACT</a></li>
                     <li><a href="./UI/login.html">ACCOUNTS</a></li>
-                   <a href="/UI/login.html"><button style="border-radius: 9px;width: 5%;" id="logout">logout</button></a>
+                    <button style="border-radius: 9px;width: 5%;" onclick="localStorage.removeItem('token')">logout</button>
                 </ul> 
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
