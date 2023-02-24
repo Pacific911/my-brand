@@ -237,11 +237,6 @@ const uploads = multer({ storage, fileFilter });
  *          - in: path
  *            name: id
  *            required: true
- *      requestBody:
- *          content:
- *              multipart/form-data:
- *                  schema:
- *                      type: object
  *      responses:
  *          200:
  *              description: Retrieve one blog
