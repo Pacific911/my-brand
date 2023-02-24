@@ -227,6 +227,35 @@ const uploads = multer({ storage, fileFilter });
  *               items:
  *                 $ref: '#components/schema/login'
  */
+/**
+ * @swagger
+ * /user/auth/get/{id}:
+ *  patch:
+ *      summary: this API is used to update a blog
+ *      tags: [Users]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *      requestBody:
+ *          content:
+ *              multipart/form-data:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          name:
+ *                              type: string
+ *                              description: name
+ *      responses:
+ *          200:
+ *              description: Retrieved one blog
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *          400:
+ *              description: Unable to get one user
+ */
 
 /**
  * @swagger
